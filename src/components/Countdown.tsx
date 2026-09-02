@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { useNow } from "@/lib/hooks";
 import { TARGET_DATE } from "@/data/festival";
 
@@ -23,35 +24,32 @@ export default function Countdown() {
           { label: "Seconds", short: "s", value: Math.floor(diff / 1000) % 60 },
         ];
 
+  const spoken =
+    diff === null
+      ? "Loading countdown"
+      : `${units.map((u) => `${u.value} ${u.label.toLowerCase()}`).join(", ")} until the festival opens`;
+
   return (
-    <span style={{ display: "flex", alignItems: "center", gap: 14, color: "#111111" }}>
+    <span
+      role="timer"
+      aria-label={spoken}
+      className="flex items-center gap-3.5 text-ink"
+    >
       {units.map((u) => (
         <span
           key={u.label}
-          style={{
-            display: "inline-flex",
-            alignItems: "baseline",
-            gap: 2,
-            fontFamily: "var(--font-plex-mono), monospace",
-            fontSize: 11,
-            letterSpacing: "0.14em",
-            color: "rgba(17,17,17,0.45)",
-          }}
+          aria-hidden
+          className="inline-flex items-baseline gap-0.5 font-mono text-[11px] tracking-[0.14em] text-ink/45"
         >
           <span
             key={u.value}
             style={{
-              display: "inline-block",
-              minWidth: "2ch",
-              textAlign: "right",
-              fontFamily: "var(--font-archivo), sans-serif",
-              fontWeight: 800,
-              fontSize: 15,
-              letterSpacing: "-0.01em",
-              color: u.label === "Seconds" ? "#EA1F45" : "#111111",
-              transformOrigin: "top center",
               animation: `${u.value % 2 === 0 ? "flipPageA" : "flipPageB"} .6s cubic-bezier(.16,1,.3,1)`,
             }}
+            className={clsx(
+              "inline-block min-w-[2ch] origin-top text-right font-sans text-[15px] font-extrabold tracking-[-0.01em]",
+              u.label === "Seconds" ? "text-accent" : "text-ink"
+            )}
           >
             {String(u.value).padStart(2, "0")}
           </span>

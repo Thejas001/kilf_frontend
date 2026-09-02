@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
+import { SITE_URL } from "@/lib/site";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -23,10 +24,26 @@ const notoMalayalam = Noto_Serif_Malayalam({
   weight: ["400", "600"],
 });
 
+const title = "KaKhaGa — The Mirror Mind Literature Festival";
+const description =
+  "Four days for the written word — in Malayalam, and everything it listens to. 15–18 January 2027, Karunagappally.";
+
 export const metadata: Metadata = {
-  title: "KaKhaGa — The Mirror Mind Literature Festival",
-  description:
-    "Four days for the written word — in Malayalam, and everything it listens to. 15–18 January 2027, Karunagappally.",
+  metadataBase: new URL(SITE_URL),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: SITE_URL,
+    siteName: "KaKhaGa",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({
@@ -37,21 +54,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${archivo.variable} ${plexMono.variable} ${notoMalayalam.variable}`}
-        style={{
-          background: "#F4F3F1",
-          backgroundImage:
-            "repeating-linear-gradient(101deg, rgba(17,17,17,0.018) 0 2px, transparent 2px 7px),repeating-linear-gradient(-7deg, rgba(17,17,17,0.014) 0 1px, transparent 1px 9px),radial-gradient(120% 80% at 70% 0%, rgba(17,17,17,0.035), transparent 60%)",
-          color: "#111111",
-          fontFamily: "var(--font-archivo), sans-serif",
-          minHeight: "100vh",
-          position: "relative",
-          overflowX: "hidden",
-        }}
+        className={`${archivo.variable} ${plexMono.variable} ${notoMalayalam.variable} bg-paper-texture relative min-h-screen overflow-x-hidden bg-paper font-sans text-ink`}
       >
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-paper"
+        >
+          Skip to content
+        </a>
         <ScrollProgress />
         <Nav />
-        {children}
+        <main id="main">{children}</main>
         <Footer />
       </body>
     </html>

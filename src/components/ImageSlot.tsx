@@ -13,15 +13,10 @@ export default function ImageSlot({
 }) {
   return (
     <div
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        borderRadius: radius,
-        overflow: "hidden",
-      }}
+      className="relative h-full w-full overflow-hidden"
+      style={{ borderRadius: radius }}
     >
-      <Image src={src} alt={alt} fill sizes={sizes} style={{ objectFit: "cover" }} />
+      <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
     </div>
   );
 }

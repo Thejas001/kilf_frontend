@@ -9,110 +9,63 @@ export const metadata: Metadata = {
 
 export default function VenuePage() {
   return (
-    <section className="kk-hpad" style={{ padding: "150px 40px 110px" }}>
-      <div
-        style={{
-          fontFamily: "var(--font-plex-mono), monospace",
-          fontSize: 11,
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          color: "rgba(17,17,17,0.5)",
-        }}
-      >
+    <section className="px-10 pt-37.5 pb-27.5 max-[640px]:px-5">
+      <div className="font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
         /venue &amp; passes
       </div>
-      <h1
-        className="kk-h1"
-        style={{
-          fontFamily: "var(--font-archivo), sans-serif",
-          fontWeight: 800,
-          fontSize: "clamp(48px,8vw,120px)",
-          lineHeight: 0.95,
-          margin: "24px 0 50px",
-        }}
-      >
+      <h1 className="mt-6 mb-12.5 font-sans text-[clamp(48px,8vw,120px)] leading-[0.95] font-extrabold break-words max-[480px]:text-[clamp(34px,11vw,120px)]">
         Karunagappally.
       </h1>
-      <div
-        style={{
-          position: "relative",
-          zIndex: 2,
-          width: "100%",
-          height: "56vh",
-          borderRadius: 20,
-          overflow: "hidden",
-          boxShadow: "0 40px 80px -40px rgba(17,17,17,0.45), 0 2px 0 rgba(255,255,255,0.6)",
-        }}
-      >
+      <div className="relative z-[2] h-[56vh] w-full overflow-hidden rounded-[20px] shadow-[0_40px_80px_-40px_rgba(17,17,17,0.45),0_2px_0_rgba(255,255,255,0.6)]">
         <ImageSlot
           src="https://picsum.photos/seed/kkg-venue/1600/900"
           alt="Venue / aerial of the festival ground"
           sizes="100vw"
         />
       </div>
-      <div
-        style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 40, margin: "70px 0 90px" }}
-        className="venue-info-grid"
-      >
+      <div className="mt-17.5 mb-22.5 grid grid-cols-3 gap-10 max-[860px]:grid-cols-1 max-[860px]:gap-7.5">
         <div>
-          <div className="venue-label">Getting there</div>
-          <p style={{ fontSize: 15, lineHeight: 1.75, color: "rgba(17,17,17,0.7)", margin: 0 }}>
+          <div className="mb-3.5 font-mono text-[11px] tracking-[0.18em] text-ink/45 uppercase">
+            Getting there
+          </div>
+          <p className="m-0 text-[15px] leading-loose text-ink/70">
             Two kilometres from Karunagappally bus stand. Shuttles run every
             twenty minutes from the town square, 08:00&ndash;23:30.
           </p>
         </div>
         <div>
-          <div className="venue-label">Six stages</div>
-          <p style={{ fontSize: 15, lineHeight: 1.75, color: "rgba(17,17,17,0.7)", margin: 0 }}>
+          <div className="mb-3.5 font-mono text-[11px] tracking-[0.18em] text-ink/45 uppercase">
+            Six stages
+          </div>
+          <p className="m-0 text-[15px] leading-loose text-ink/70">
             Sand Stage, The Long Table, Translation Room, Poetry Shed,
             Children&apos;s Yard, and the Late Hall &mdash; open until 01:00.
           </p>
         </div>
         <div>
-          <div className="venue-label">Access</div>
-          <p style={{ fontSize: 15, lineHeight: 1.75, color: "rgba(17,17,17,0.7)", margin: 0 }}>
+          <div className="mb-3.5 font-mono text-[11px] tracking-[0.18em] text-ink/45 uppercase">
+            Access
+          </div>
+          <p className="m-0 text-[15px] leading-loose text-ink/70">
             All stages are step-free. Live captioning in the Long Table and
             Translation Room. Quiet room beside the Poetry Shed.
           </p>
         </div>
       </div>
-      <div style={{ borderTop: "1px solid rgba(17,17,17,0.12)", paddingTop: 40 }}>
-        <div
-          style={{
-            fontFamily: "var(--font-plex-mono), monospace",
-            fontSize: 11,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "rgba(17,17,17,0.5)",
-            marginBottom: 30,
-          }}
-        >
+      <div className="border-t border-ink/12 pt-10">
+        <div className="mb-7.5 font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
           Passes
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }} className="passes-grid">
+        <div className="grid grid-cols-3 gap-6 max-[860px]:grid-cols-1">
           {PASSES.map((t) => (
             <PassCard key={t.name} pass={t} />
           ))}
         </div>
-        <p style={{ fontSize: 13, color: "rgba(17,17,17,0.45)", marginTop: 24 }}>
+        <p className="mt-6 text-[13px] text-ink/45">
           Students enter free with a valid ID. Volunteer applications open in
           October.
         </p>
       </div>
-      <style>{`
-        .venue-label {
-          font-family: var(--font-plex-mono), monospace;
-          font-size: 11px;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: rgba(17,17,17,0.45);
-          margin-bottom: 14px;
-        }
-        @media (max-width: 860px) {
-          .venue-info-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
-          .passes-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }

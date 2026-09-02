@@ -1,118 +1,39 @@
-"use client";
-
-import { ACCENT, JOURNAL } from "@/data/festival";
-import { rowStyle } from "@/lib/hooks";
-import { useHoverPeek } from "@/lib/useHoverPeek";
+import { JOURNAL } from "@/data/festival";
+import { rowInteractive } from "@/lib/ui";
 
 export default function JournalContent() {
-  const { hovered, clearHover, hoverRow } = useHoverPeek();
-
   return (
-    <section className="kk-hpad" style={{ padding: "150px 40px 110px" }}>
-      <div
-        style={{
-          fontFamily: "var(--font-plex-mono), monospace",
-          fontSize: 11,
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          color: "rgba(17,17,17,0.5)",
-        }}
-      >
+    <section className="px-10 pt-37.5 pb-27.5 max-[640px]:px-5">
+      <div className="font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
         /journal
       </div>
-      <h1
-        className="kk-h1"
-        style={{
-          fontFamily: "var(--font-archivo), sans-serif",
-          fontWeight: 800,
-          fontSize: "clamp(48px,8vw,120px)",
-          lineHeight: 0.95,
-          margin: "24px 0 50px",
-        }}
-      >
+      <h1 className="mt-6 mb-12.5 font-sans text-[clamp(48px,8vw,120px)] leading-[0.95] font-extrabold break-words max-[480px]:text-[clamp(34px,11vw,120px)]">
         Notes between
         <br />
         editions.
       </h1>
-      <div onMouseLeave={clearHover}>
+      <div>
         {JOURNAL.map((j) => (
-          <div
-            key={j.id}
-            onMouseEnter={() => hoverRow(j.id)}
-            style={rowStyle(hovered, j.id, ACCENT, { align: "flex-start", pad: "30px 0" })}
-            className="journal-row"
-          >
-            <span
-              className="j-date"
-              style={{
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 11,
-                color: "rgba(17,17,17,0.45)",
-                width: 130,
-                flex: "0 0 130px",
-              }}
-            >
+          <div key={j.id} className={`${rowInteractive} items-start py-7.5`}>
+            <span className="w-32.5 flex-none font-mono text-[11px] text-ink/45 max-[700px]:order-2 max-[700px]:w-auto">
               {j.date}
             </span>
             <div
-              className="j-thumb"
-              style={{
-                flex: "0 0 150px",
-                width: 150,
-                height: 100,
-                borderRadius: 20,
-                overflow: "hidden",
-                backgroundImage: `url(https://picsum.photos/seed/kkg-${j.id}/600/400)`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                boxShadow: "0 20px 40px -24px rgba(17,17,17,0.4)",
-                transform: hovered === j.id ? "scale(1.04)" : "scale(1)",
-                transition: "transform .5s cubic-bezier(.16,1,.3,1)",
-              }}
+              className="h-25 w-37.5 flex-none overflow-hidden rounded-[20px] bg-cover bg-center shadow-[0_20px_40px_-24px_rgba(17,17,17,0.4)] transition-transform duration-500 ease-out group-hover:scale-[1.04] max-[700px]:order-1 max-[700px]:h-40 max-[700px]:basis-full"
+              style={{ backgroundImage: `url(https://picsum.photos/seed/kkg-${j.id}/600/400)` }}
             />
-            <div className="j-body" style={{ flex: 1 }}>
-              <div
-                style={{
-                  fontFamily: "var(--font-archivo), sans-serif",
-                  fontWeight: 800,
-                  letterSpacing: "-0.02em",
-                  fontSize: "clamp(24px,2.8vw,38px)",
-                  lineHeight: 1.15,
-                }}
-              >
+            <div className="flex-1 max-[700px]:order-3 max-[700px]:mt-1.5 max-[700px]:basis-full">
+              <div className="font-sans text-[clamp(24px,2.8vw,38px)] leading-[1.15] font-extrabold tracking-[-0.02em]">
                 {j.title}
               </div>
-              <div style={{ fontSize: 14, color: "rgba(17,17,17,0.55)", marginTop: 8, maxWidth: 620 }}>
-                {j.excerpt}
-              </div>
+              <div className="mt-2 max-w-155 text-sm text-ink/55">{j.excerpt}</div>
             </div>
-            <span
-              className="j-kind"
-              style={{
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 11,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "rgba(17,17,17,0.45)",
-                width: 120,
-                flex: "0 0 120px",
-                textAlign: "right",
-              }}
-            >
+            <span className="w-30 flex-none text-right font-mono text-[11px] tracking-[0.12em] text-ink/45 uppercase max-[700px]:order-2 max-[700px]:ml-auto max-[700px]:w-auto">
               {j.kind}
             </span>
           </div>
         ))}
       </div>
-      <style>{`
-        @media (max-width: 700px) {
-          .journal-row { flex-wrap: wrap; }
-          .j-thumb { width: 100% !important; flex: 1 1 100% !important; height: 160px !important; order: 1; }
-          .j-date { order: 2; width: auto !important; flex: 0 0 auto !important; }
-          .j-kind { order: 2; margin-left: auto; width: auto !important; flex: 0 0 auto !important; }
-          .j-body { order: 3; flex: 1 1 100% !important; width: 100% !important; margin-top: 6px; }
-        }
-      `}</style>
     </section>
   );
 }

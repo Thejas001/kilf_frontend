@@ -2,15 +2,16 @@
 
 import { useCallback, useMemo, useState } from "react";
 import { useScrollProgress } from "@/lib/hooks";
-import { ACCENT } from "@/data/festival";
 import Countdown from "@/components/Countdown";
 import ImageSlot from "@/components/ImageSlot";
 
 const HERO_CARDS = [
-  { src: "https://picsum.photos/seed/kkg-ground/1200/800", alt: "Wide shot of the festival ground", left: "0%", top: "8%", w: "52%", h: "72%", anim: "floatA 7s", f: 9, rot: -1.4 },
-  { src: "https://picsum.photos/seed/kkg-reading/700/1000", alt: "A reading, close up", left: "49%", top: "0%", w: "25%", h: "54%", anim: "floatB 8.5s", f: 16, rot: 2.6 },
-  { src: "https://picsum.photos/seed/kkg-audience/900/700", alt: "The audience", left: "61%", top: "42%", w: "33%", h: "50%", anim: "floatC 9.5s", f: 22, rot: -2.2 },
+  { src: "https://picsum.photos/seed/kkg-ground/1200/800", alt: "Wide shot of the festival ground", left: "0%", top: "8%", w: "52%", h: "72%", anim: "[animation:floatA_7s_ease-in-out_0s_infinite]", f: 9, rot: -1.4 },
+  { src: "https://picsum.photos/seed/kkg-reading/700/1000", alt: "A reading, close up", left: "49%", top: "0%", w: "25%", h: "54%", anim: "[animation:floatB_8.5s_ease-in-out_.7s_infinite]", f: 16, rot: 2.6 },
+  { src: "https://picsum.photos/seed/kkg-audience/900/700", alt: "The audience", left: "61%", top: "42%", w: "33%", h: "50%", anim: "[animation:floatC_9.5s_ease-in-out_1.4s_infinite]", f: 22, rot: -2.2 },
 ];
+
+const EASE_SMOOTH = "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]";
 
 function letterRow(word: string, hx: number) {
   const heroActive = hx !== 0;
@@ -21,10 +22,8 @@ function letterRow(word: string, hx: number) {
     return {
       ch,
       style: {
-        display: "inline-block",
         transform: `translateY(${(-prox * 18).toFixed(1)}px)`,
-        color: prox > 0.7 ? ACCENT : "#111111",
-        transition: "transform .4s cubic-bezier(.16,1,.3,1), color .35s ease",
+        color: prox > 0.7 ? "var(--color-accent)" : "var(--color-ink)",
       } as React.CSSProperties,
     };
   });
@@ -45,7 +44,6 @@ export default function Hero() {
     setHy(0);
   }, []);
 
-  const smooth = "transform .7s cubic-bezier(.16,1,.3,1)";
   const par = (fx: number, fy: number, extra?: string) =>
     `translate3d(${(hx * fx).toFixed(2)}px, ${(hy * fy).toFixed(2)}px, 0)${extra || ""}`;
   const cursorT = (hx + 1) / 2;
@@ -57,197 +55,85 @@ export default function Hero() {
     <section
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className="kk-hpad"
-      style={{ padding: "150px 40px 0", position: "relative", overflow: "hidden" }}
+      className="relative overflow-hidden px-10 pt-37.5 max-[640px]:px-5"
     >
       <div
-        style={{
-          position: "absolute",
-          left: "-7%",
-          top: 110,
-          width: "34vw",
-          height: 640,
-          maxWidth: 520,
-          background: "#FFFFFF",
-          borderRadius: "6px 14px 14px 6px",
-          zIndex: 0,
-          pointerEvents: "none",
-          opacity: 0.85,
-          boxShadow: "0 60px 100px -60px rgba(17,17,17,0.5)",
-          transform: `${par(-9, -7)} rotate(-6.5deg) translateY(${(sy * -0.045).toFixed(1)}px)`,
-          transition: smooth,
-        }}
+        aria-hidden
+        className={`pointer-events-none absolute top-27.5 -left-[7%] z-0 h-160 w-[34vw] max-w-130 rounded-[6px_14px_14px_6px] bg-white opacity-85 shadow-[0_60px_100px_-60px_rgba(17,17,17,0.5)] ${EASE_SMOOTH}`}
+        style={{ transform: `${par(-9, -7)} rotate(-6.5deg) translateY(${(sy * -0.045).toFixed(1)}px)` }}
       />
       <div
-        style={{
-          position: "absolute",
-          left: "16%",
-          top: 190,
-          width: "30vw",
-          height: 560,
-          maxWidth: 460,
-          background: "linear-gradient(105deg,#FFFFFF,#F3F1ED)",
-          borderRadius: "14px 6px 6px 14px",
-          zIndex: 0,
-          pointerEvents: "none",
-          opacity: 0.7,
-          boxShadow: "0 50px 90px -60px rgba(17,17,17,0.45)",
-          transform: `${par(-14, -10)} rotate(4.5deg) translateY(${(sy * -0.07).toFixed(1)}px)`,
-          transition: smooth,
-        }}
+        aria-hidden
+        className={`pointer-events-none absolute top-47.5 left-[16%] z-0 h-140 w-[30vw] max-w-115 rounded-[14px_6px_6px_14px] bg-[linear-gradient(105deg,#FFFFFF,#F3F1ED)] opacity-70 shadow-[0_50px_90px_-60px_rgba(17,17,17,0.45)] ${EASE_SMOOTH}`}
+        style={{ transform: `${par(-14, -10)} rotate(4.5deg) translateY(${(sy * -0.07).toFixed(1)}px)` }}
       />
       <div
+        aria-hidden
+        className="pointer-events-none absolute top-37.5 left-[31%] z-0 h-150 w-[23vw] max-w-90 origin-left overflow-hidden rounded-[4px_18px_18px_4px] bg-[linear-gradient(100deg,#FFFFFF_0%,#FBFAF8_62%,#EDEBE6_100%)] shadow-[0_70px_110px_-60px_rgba(17,17,17,0.55),-1px_0_0_rgba(17,17,17,0.06)] transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
         style={{
-          position: "absolute",
-          left: "31%",
-          top: 150,
-          width: "23vw",
-          height: 600,
-          maxWidth: 360,
-          transformOrigin: "left center",
-          zIndex: 0,
-          pointerEvents: "none",
-          background: "linear-gradient(100deg,#FFFFFF 0%,#FBFAF8 62%,#EDEBE6 100%)",
-          borderRadius: "4px 18px 18px 4px",
-          overflow: "hidden",
-          boxShadow: "0 70px 110px -60px rgba(17,17,17,0.55), -1px 0 0 rgba(17,17,17,0.06)",
           transform: `perspective(1400px) rotateY(${(-6 - cursorT * 46).toFixed(1)}deg) translateY(${(sy * -0.055).toFixed(1)}px)`,
-          transition: "transform .8s cubic-bezier(.16,1,.3,1)",
         }}
       >
         <div
+          className="absolute inset-0 transition-[background] duration-[800ms]"
           style={{
-            position: "absolute",
-            inset: 0,
             background: `linear-gradient(100deg, rgba(17,17,17,0.10) 0 3%, transparent 22%, transparent 78%, rgba(17,17,17,${(0.05 + cursorT * 0.12).toFixed(3)}) 100%)`,
-            transition: "background .8s ease",
           }}
         />
       </div>
 
       <div
-        style={{
-          position: "absolute",
-          top: -220,
-          right: -200,
-          width: 640,
-          height: 640,
-          borderRadius: "50%",
-          border: "64px solid #2FE08A",
-          zIndex: 0,
-          pointerEvents: "none",
-          transform: `${par(-22, -16)} rotate(${(sy * 0.03).toFixed(2)}deg)`,
-          transition: smooth,
-        }}
+        aria-hidden
+        className={`pointer-events-none absolute -top-55 -right-50 z-0 h-160 w-160 rounded-full border-[64px] border-emerald ${EASE_SMOOTH}`}
+        style={{ transform: `${par(-22, -16)} rotate(${(sy * 0.03).toFixed(2)}deg)` }}
       />
       <div
-        style={{
-          position: "absolute",
-          bottom: -200,
-          left: -320,
-          width: 480,
-          height: 480,
-          borderRadius: "50%",
-          border: "52px solid #2FE08A",
-          zIndex: 0,
-          pointerEvents: "none",
-          transform: `${par(18, 14)} rotate(${(sy * -0.025).toFixed(2)}deg)`,
-          transition: smooth,
-        }}
+        aria-hidden
+        className={`pointer-events-none absolute -bottom-50 -left-80 z-0 h-120 w-120 rounded-full border-[52px] border-emerald ${EASE_SMOOTH}`}
+        style={{ transform: `${par(18, 14)} rotate(${(sy * -0.025).toFixed(2)}deg)` }}
       />
       <div
-        style={{
-          position: "absolute",
-          top: 96,
-          right: -80,
-          width: 230,
-          height: 230,
-          zIndex: 0,
-          pointerEvents: "none",
-          animation: "floatB 9s ease-in-out infinite",
-        }}
+        aria-hidden
+        className="animate-float-b pointer-events-none absolute top-24 -right-20 z-0 h-57.5 w-57.5"
       >
         <div
-          style={{
-            width: "100%",
-            height: "100%",
-            borderRadius: "50%",
-            background: "linear-gradient(140deg,#FFC61A,#F2295B 55%,#B02BE0)",
-            filter: "saturate(1.05)",
-            boxShadow: "0 40px 90px -30px rgba(242,41,91,0.45)",
-            transform: `${par(-34, -24)} translateY(${(sy * -0.06).toFixed(1)}px)`,
-            transition: smooth,
-          }}
+          className={`h-full w-full rounded-full bg-[linear-gradient(140deg,var(--color-gold),var(--color-magenta)_55%,var(--color-violet))] shadow-[0_40px_90px_-30px_rgba(242,41,91,0.45)] saturate-[1.05] ${EASE_SMOOTH}`}
+          style={{ transform: `${par(-34, -24)} translateY(${(sy * -0.06).toFixed(1)}px)` }}
         />
       </div>
 
-      <div
-        style={{
-          position: "relative",
-          zIndex: 2,
-          display: "flex",
-          justifyContent: "space-between",
-          fontFamily: "var(--font-plex-mono), monospace",
-          fontSize: 11,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: "rgba(17,17,17,0.5)",
-          borderBottom: "1px solid rgba(17,17,17,0.12)",
-          paddingBottom: 14,
-          flexWrap: "wrap",
-          gap: 12,
-        }}
-      >
+      <div className="relative z-[2] flex flex-wrap justify-between gap-3 border-b border-ink/12 pb-3.5 font-mono text-[11px] tracking-[0.18em] text-ink/50 uppercase">
         <span>Capital Media presents</span>
         <Countdown />
         <span>15&ndash;18 Jan 2027 &middot; Karunagappally</span>
       </div>
 
-      <div style={{ position: "relative", zIndex: 2, margin: "52px 0 0" }}>
-        <div
-          style={{
-            fontFamily: "var(--font-noto-malayalam), serif",
-            fontSize: "clamp(64px,11vw,176px)",
-            lineHeight: 1,
-            letterSpacing: "0.02em",
-            color: "#111111",
-          }}
-        >
+      <div className="relative z-[2] mt-13">
+        <div className="font-malayalam text-[clamp(64px,11vw,176px)] leading-none tracking-[0.02em] text-ink">
           ക ഖ ഗ
         </div>
-        <div
-          style={{
-            fontFamily: "var(--font-plex-mono), monospace",
-            fontSize: 13,
-            letterSpacing: "0.34em",
-            textTransform: "uppercase",
-            color: ACCENT,
-            margin: "22px 0 10px",
-          }}
-        >
+        <div className="mt-5.5 mb-2.5 font-mono text-[13px] tracking-[0.34em] text-accent uppercase">
           The Mirror Mind
         </div>
-        <h1
-          style={{
-            fontFamily: "var(--font-archivo), sans-serif",
-            fontWeight: 900,
-            fontSize: "clamp(44px,8.4vw,132px)",
-            lineHeight: 0.94,
-            letterSpacing: "-0.03em",
-            textTransform: "uppercase",
-            margin: 0,
-          }}
-        >
-          <span style={{ display: "flex", flexWrap: "nowrap" }}>
+        <h1 className="m-0 font-sans text-[clamp(44px,8.4vw,132px)] leading-[0.94] font-black tracking-[-0.03em] uppercase">
+          <span className="flex flex-nowrap">
             {heroLettersTop.map((l, i) => (
-              <span key={i} style={l.style}>
+              <span
+                key={i}
+                className="inline-block transition-[transform,color] duration-[400ms] ease-out"
+                style={l.style}
+              >
                 {l.ch}
               </span>
             ))}
           </span>
-          <span style={{ display: "flex", flexWrap: "nowrap" }}>
+          <span className="flex flex-nowrap">
             {heroLettersBottom.map((l, i) => (
-              <span key={i} style={l.style}>
+              <span
+                key={i}
+                className="inline-block transition-[transform,color] duration-[400ms] ease-out"
+                style={l.style}
+              >
                 {l.ch}
               </span>
             ))}
@@ -255,66 +141,29 @@ export default function Hero() {
         </h1>
       </div>
 
-      <div
-        style={{
-          position: "relative",
-          zIndex: 2,
-          display: "grid",
-          gridTemplateColumns: "1.4fr 1fr",
-          gap: 60,
-          alignItems: "end",
-          marginTop: 52,
-          paddingBottom: 60,
-        }}
-        className="hero-subgrid"
-      >
-        <div
-          style={{
-            fontFamily: "var(--font-archivo), sans-serif",
-            fontWeight: 800,
-            letterSpacing: "-0.02em",
-            fontSize: "clamp(24px,3vw,40px)",
-            lineHeight: 1.25,
-            color: "rgba(17,17,17,0.9)",
-            maxWidth: 760,
-          }}
-        >
+      <div className="relative z-[2] mt-13 grid grid-cols-[1.4fr_1fr] items-end gap-15 pb-15 max-[860px]:grid-cols-1">
+        <div className="max-w-190 font-sans text-[clamp(24px,3vw,40px)] leading-[1.25] font-extrabold tracking-[-0.02em] text-ink/90">
           Four days for the written word &mdash; in Malayalam, and everything
           it listens to.
         </div>
-        <div style={{ fontSize: 15, lineHeight: 1.7, color: "rgba(17,17,17,0.6)" }}>
+        <div className="text-[15px] leading-relaxed text-ink/60">
           A festival of readings, arguments, translation and late-night
           poetry in Karunagappally. Ninety sessions. Six stages. One shared
           language of attention.
         </div>
       </div>
 
-      <div
-        style={{ position: "relative", zIndex: 2, height: "72vh", minHeight: 520, marginBottom: 20 }}
-        className="hero-cluster"
-      >
+      <div className="relative z-[2] mb-5 h-[72vh] min-h-130 max-[860px]:h-[60vh] max-[860px]:min-h-105">
         {HERO_CARDS.map((c, i) => (
           <div
             key={c.src}
-            style={{
-              position: "absolute",
-              left: c.left,
-              top: c.top,
-              width: c.w,
-              height: c.h,
-              animation: `${c.anim} ease-in-out infinite`,
-              animationDelay: `${i * 0.7}s`,
-            }}
+            className={`absolute ${c.anim}`}
+            style={{ left: c.left, top: c.top, width: c.w, height: c.h }}
           >
             <div
+              className={`h-full w-full overflow-hidden rounded-[20px] shadow-[0_50px_90px_-44px_rgba(17,17,17,0.5),0_8px_24px_-14px_rgba(17,17,17,0.25)] ${EASE_SMOOTH}`}
               style={{
-                width: "100%",
-                height: "100%",
-                borderRadius: 20,
-                overflow: "hidden",
                 transform: `${par(c.f * -1, c.f * -0.7)} rotate(${c.rot}deg) translateY(${(sy * -0.035 * (1 + i * 0.5)).toFixed(1)}px)`,
-                transition: smooth,
-                boxShadow: "0 50px 90px -44px rgba(17,17,17,0.5), 0 8px 24px -14px rgba(17,17,17,0.25)",
               }}
             >
               <ImageSlot src={c.src} alt={c.alt} radius={20} />
@@ -322,13 +171,6 @@ export default function Hero() {
           </div>
         ))}
       </div>
-
-      <style>{`
-        @media (max-width: 860px) {
-          .hero-subgrid { grid-template-columns: 1fr !important; }
-          .hero-cluster { height: 60vh !important; min-height: 420px !important; }
-        }
-      `}</style>
     </section>
   );
 }

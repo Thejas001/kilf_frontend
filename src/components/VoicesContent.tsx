@@ -1,7 +1,8 @@
 "use client";
 
-import { ACCENT, SPEAKERS } from "@/data/festival";
-import { rowStyle } from "@/lib/hooks";
+import clsx from "clsx";
+import { SPEAKERS } from "@/data/festival";
+import { rowInteractive, rowLabel, rowMeta, rowTitle } from "@/lib/ui";
 import { useHoverPeek } from "@/lib/useHoverPeek";
 
 export default function VoicesContent() {
@@ -9,33 +10,19 @@ export default function VoicesContent() {
   const hoveredSpeaker = SPEAKERS.find((p) => p.id === hovered);
 
   return (
-    <section onMouseMove={trackCursor} className="kk-hpad" style={{ padding: "150px 40px 110px" }}>
-      <div
-        style={{
-          fontFamily: "var(--font-plex-mono), monospace",
-          fontSize: 11,
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          color: "rgba(17,17,17,0.5)",
-        }}
-      >
+    <section
+      onMouseMove={trackCursor}
+      className="px-10 pt-37.5 pb-27.5 max-[640px]:px-5"
+    >
+      <div className="font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
         /voices
       </div>
-      <h1
-        className="kk-h1"
-        style={{
-          fontFamily: "var(--font-archivo), sans-serif",
-          fontWeight: 800,
-          fontSize: "clamp(48px,8vw,120px)",
-          lineHeight: 0.95,
-          margin: "24px 0 20px",
-        }}
-      >
+      <h1 className="mt-6 mb-5 font-sans text-[clamp(48px,8vw,120px)] leading-[0.95] font-extrabold break-words max-[480px]:text-[clamp(34px,11vw,120px)]">
         Writers, translators,
         <br />
         troublemakers.
       </h1>
-      <p style={{ fontSize: 15, color: "rgba(17,17,17,0.55)", maxWidth: 520, margin: "0 0 60px" }}>
+      <p className="m-0 mb-15 max-w-130 text-[15px] text-ink/55">
         Hover a name to see them. Forty-two participants across ten
         languages.
       </p>
@@ -44,84 +31,35 @@ export default function VoicesContent() {
           <div
             key={p.id}
             onMouseEnter={() => hoverRow(p.id)}
-            className="kk-row-stack"
-            style={rowStyle(hovered, p.id, ACCENT, { pad: "26px 0" })}
+            className={clsx(rowInteractive, "py-6.5")}
           >
-            <span
-              style={{
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 11,
-                color: "rgba(17,17,17,0.4)",
-                width: 60,
-                flex: "0 0 60px",
-              }}
-            >
+            <span className={`${rowLabel} w-15 text-ink/40`}>
               {(i + 1 < 10 ? "00" : "0") + (i + 1)}
             </span>
-            <span
-              style={{
-                fontFamily: "var(--font-archivo), sans-serif",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
-                fontSize: "clamp(26px,3.4vw,48px)",
-                lineHeight: 1.05,
-                flex: 1,
-              }}
-            >
+            <span className={`${rowTitle} text-[clamp(26px,3.4vw,48px)] leading-[1.05]`}>
               {p.name}
             </span>
-            <span
-              style={{
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 11,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "rgba(17,17,17,0.5)",
-                width: 280,
-                flex: "0 0 280px",
-                textAlign: "right",
-              }}
-            >
+            <span className={`${rowMeta} w-70`}>
               {p.role} &mdash; {p.lang}
             </span>
           </div>
         ))}
       </div>
       <div
+        aria-hidden
         style={{
-          position: "fixed",
           left: cx + 24,
           top: cy - 160,
-          width: 240,
-          height: 320,
-          pointerEvents: "none",
-          zIndex: 50,
-          borderRadius: 20,
-          overflow: "hidden",
-          backgroundColor: "#E9E7E4",
           backgroundImage: hoveredSpeaker
             ? `url(https://picsum.photos/seed/kkg-face-${hoveredSpeaker.id}/700/900)`
-            : "none",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: hoveredSpeaker ? "flex" : "none",
-          alignItems: "flex-end",
-          boxShadow: "0 40px 70px -34px rgba(17,17,17,0.55)",
-          opacity: hoveredSpeaker ? 1 : 0,
-          transition: "opacity .3s ease",
+            : undefined,
         }}
+        className={clsx(
+          "fixed z-[50] h-80 w-60 items-end overflow-hidden rounded-[20px] bg-[#E9E7E4] bg-cover bg-center shadow-[0_40px_70px_-34px_rgba(17,17,17,0.55)] transition-opacity duration-300",
+          hoveredSpeaker ? "flex opacity-100" : "hidden opacity-0"
+        )}
       >
-        <div
-          style={{
-            width: "100%",
-            padding: "14px 16px",
-            background: "linear-gradient(to top, rgba(17,17,17,0.72), transparent)",
-            color: "#FFFFFF",
-            fontFamily: "var(--font-archivo), sans-serif",
-            fontWeight: 800,
-            fontSize: 16,
-          }}
-        >
+        <div className="w-full bg-[linear-gradient(to_top,rgba(17,17,17,0.72),transparent)] p-4 px-4 py-3.5 font-sans text-base font-extrabold text-white">
           {hoveredSpeaker ? hoveredSpeaker.name : ""}
         </div>
       </div>

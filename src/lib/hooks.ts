@@ -53,25 +53,3 @@ export function useMagnetic<T extends HTMLElement>() {
 
   return { ref, onMouseMove, onMouseLeave };
 }
-
-export function rowStyle(
-  hovered: string | null,
-  key: string,
-  accent: string,
-  opts?: { align?: string; pad?: string }
-): React.CSSProperties {
-  const on = hovered === key;
-  return {
-    display: "flex",
-    alignItems: opts?.align ?? "center",
-    gap: 24,
-    padding: opts?.pad ?? "30px 0",
-    borderTop: "1px solid rgba(17,17,17,0.12)",
-    cursor: "pointer",
-    color: on ? accent : "#111111",
-    paddingLeft: on ? 20 : 0,
-    background: on ? "rgba(234,31,69,0.05)" : "transparent",
-    transition:
-      "padding-left .45s cubic-bezier(.16,1,.3,1), color .35s ease, background .35s ease",
-  };
-}

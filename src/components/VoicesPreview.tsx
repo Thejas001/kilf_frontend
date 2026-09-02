@@ -1,107 +1,51 @@
 import Link from "next/link";
-import { ACCENT, SPEAKERS } from "@/data/festival";
+import { SPEAKERS } from "@/data/festival";
 import ImageSlot from "@/components/ImageSlot";
 
-const FLOATS = ["floatA 7.5s", "floatC 8.5s", "floatB 9.5s", "floatA 8s"];
+const CARD_ANIM = [
+  "[animation:floatA_7.5s_ease-in-out_0s_infinite]",
+  "[animation:floatC_8.5s_ease-in-out_.55s_infinite]",
+  "[animation:floatB_9.5s_ease-in-out_1.1s_infinite]",
+  "[animation:floatA_8s_ease-in-out_1.65s_infinite]",
+];
 
 export default function VoicesPreview() {
   const homeSpeakers = SPEAKERS.slice(0, 4);
 
   return (
-    <section className="kk-hpad" style={{ padding: "0 40px 110px" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
-          marginBottom: 40,
-          borderTop: "1px solid rgba(17,17,17,0.12)",
-          paddingTop: 30,
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: "var(--font-plex-mono), monospace",
-            fontSize: 11,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "rgba(17,17,17,0.5)",
-            margin: 0,
-          }}
-        >
+    <section className="px-10 pb-27.5 max-[640px]:px-5">
+      <div className="mb-10 flex items-baseline justify-between border-t border-ink/12 pt-7.5">
+        <h2 className="m-0 font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
           Voices, 2027
         </h2>
         <Link
           href="/voices"
-          style={{
-            fontFamily: "var(--font-plex-mono), monospace",
-            fontSize: 11,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            cursor: "pointer",
-            color: ACCENT,
-          }}
+          className="font-mono text-[11px] tracking-[0.14em] text-accent uppercase"
         >
           All 42 &rarr;
         </Link>
       </div>
-      <div
-        style={{ display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 24 }}
-        className="voices-preview-grid"
-      >
+      <div className="grid grid-cols-4 gap-6 max-[860px]:grid-cols-2">
         {homeSpeakers.map((p, i) => (
           <Link
             key={p.id}
             href="/voices"
-            className="voices-preview-card"
-            style={{ minWidth: 0, cursor: "pointer", transition: "transform .5s cubic-bezier(.16,1,.3,1)", display: "block" }}
+            className="group block min-w-0 transition-transform duration-500 ease-out hover:-translate-y-2.5"
           >
             <div
-              style={{
-                width: "100%",
-                height: 300,
-                borderRadius: 20,
-                overflow: "hidden",
-                boxShadow: "0 34px 60px -34px rgba(17,17,17,0.42)",
-                animation: `${FLOATS[i]} ease-in-out infinite`,
-                animationDelay: `${i * 0.55}s`,
-              }}
+              className={`h-75 w-full overflow-hidden rounded-[20px] shadow-[0_34px_60px_-34px_rgba(17,17,17,0.42)] ${CARD_ANIM[i]}`}
             >
               <ImageSlot src={`https://picsum.photos/seed/kkg-face-${p.id}/700/900`} alt={p.name} />
             </div>
-            <div
-              style={{
-                fontFamily: "var(--font-archivo), sans-serif",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
-                fontSize: 22,
-                marginTop: 16,
-                color: "#111111",
-              }}
-            >
+            <div className="mt-4 font-sans text-[22px] font-extrabold tracking-[-0.02em] text-ink">
               {p.name}
             </div>
-            <div
-              style={{
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 10,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "rgba(17,17,17,0.45)",
-                marginTop: 6,
-              }}
-            >
+            <div className="mt-1.5 font-mono text-[10px] tracking-[0.14em] text-ink/45 uppercase">
               {p.role}
             </div>
           </Link>
         ))}
       </div>
-      <style>{`
-        .voices-preview-card:hover { transform: translateY(-10px); }
-        @media (max-width: 860px) {
-          .voices-preview-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
-        }
-      `}</style>
     </section>
   );
 }

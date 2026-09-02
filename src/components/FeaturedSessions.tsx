@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { FEATURED_SESSIONS, ACCENT } from "@/data/festival";
-import { rowStyle } from "@/lib/hooks";
+import clsx from "clsx";
+import { FEATURED_SESSIONS } from "@/data/festival";
+import { rowInteractive, rowLabel, rowMeta, rowTitle } from "@/lib/ui";
 import { useHoverPeek } from "@/lib/useHoverPeek";
 
 export default function FeaturedSessions() {
@@ -10,37 +11,14 @@ export default function FeaturedSessions() {
   const peek = FEATURED_SESSIONS.find((s) => s.id === hovered);
 
   return (
-    <section className="kk-hpad" style={{ padding: "110px 40px" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "baseline",
-          marginBottom: 50,
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: "var(--font-plex-mono), monospace",
-            fontSize: 11,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "rgba(17,17,17,0.5)",
-            margin: 0,
-          }}
-        >
+    <section className="px-10 py-27.5 max-[640px]:px-5">
+      <div className="mb-12.5 flex items-baseline justify-between">
+        <h2 className="m-0 font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
           Selected sessions
         </h2>
         <Link
           href="/programme"
-          style={{
-            fontFamily: "var(--font-plex-mono), monospace",
-            fontSize: 11,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            cursor: "pointer",
-            color: ACCENT,
-          }}
+          className="font-mono text-[11px] tracking-[0.14em] text-accent uppercase"
         >
           Full programme &rarr;
         </Link>
@@ -51,71 +29,22 @@ export default function FeaturedSessions() {
             key={s.id}
             href="/programme"
             onMouseEnter={() => hoverRow(s.id)}
-            className="kk-row-stack"
-            style={rowStyle(hovered, s.id, ACCENT)}
+            onFocus={() => hoverRow(s.id)}
+            className={rowInteractive}
           >
-            <span
-              style={{
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 11,
-                letterSpacing: "0.14em",
-                color: "rgba(17,17,17,0.45)",
-                width: 60,
-                flex: "0 0 60px",
-              }}
-            >
-              {s.num}
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-archivo), sans-serif",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
-                fontSize: "clamp(24px,3.2vw,44px)",
-                lineHeight: 1.1,
-                flex: 1,
-              }}
-            >
-              {s.title}
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 11,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "rgba(17,17,17,0.5)",
-                width: 220,
-                flex: "0 0 220px",
-                textAlign: "right",
-              }}
-            >
-              {s.meta}
-            </span>
+            <span className={`${rowLabel} w-15`}>{s.num}</span>
+            <span className={`${rowTitle} text-[clamp(24px,3.2vw,44px)]`}>{s.title}</span>
+            <span className={`${rowMeta} w-55`}>{s.meta}</span>
           </Link>
         ))}
       </div>
       <div
-        style={{
-          position: "fixed",
-          left: cx + 26,
-          top: cy - 90,
-          width: 250,
-          height: 150,
-          zIndex: 55,
-          pointerEvents: "none",
-          borderRadius: 20,
-          padding: "18px 20px",
-          display: peek ? "flex" : "none",
-          alignItems: "flex-end",
-          background: "linear-gradient(140deg,#FFC61A,#F2295B 60%,#B02BE0)",
-          color: "#FFFFFF",
-          fontFamily: "var(--font-archivo), sans-serif",
-          fontWeight: 800,
-          fontSize: 19,
-          lineHeight: 1.2,
-          boxShadow: "0 30px 60px -28px rgba(242,41,91,0.55)",
-        }}
+        aria-hidden
+        style={{ left: cx + 26, top: cy - 90 }}
+        className={clsx(
+          "fixed z-[55] h-37.5 w-62.5 items-end rounded-[20px] bg-[linear-gradient(140deg,var(--color-gold),var(--color-magenta)_60%,var(--color-violet))] p-5 font-sans text-[19px] leading-tight font-extrabold text-white shadow-[0_30px_60px_-28px_rgba(242,41,91,0.55)]",
+          peek ? "flex" : "hidden"
+        )}
       >
         {peek ? peek.meta : ""}
       </div>

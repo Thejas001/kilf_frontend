@@ -7,15 +7,9 @@ export default function ScrollProgress() {
 
   return (
     <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        height: 3,
-        zIndex: 70,
-        width: `${(progress * 100).toFixed(2)}%`,
-        background: "linear-gradient(90deg,#2FE08A,#FFC61A,#EA1F45)",
-      }}
+      aria-hidden
+      className="fixed top-0 left-0 z-[70] h-[3px] bg-[linear-gradient(90deg,var(--color-emerald),var(--color-gold),var(--color-accent))]"
+      style={{ width: `${(progress * 100).toFixed(2)}%` }}
     />
   );
 }

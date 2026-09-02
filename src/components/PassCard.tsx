@@ -1,6 +1,6 @@
 "use client";
 
-import { ACCENT } from "@/data/festival";
+import clsx from "clsx";
 import type { Pass } from "@/data/festival";
 import { useMagnetic } from "@/lib/hooks";
 
@@ -9,64 +9,37 @@ export default function PassCard({ pass }: { pass: Pass }) {
     ref: bookRef,
     onMouseMove: bookMouseMove,
     onMouseLeave: bookMouseLeave,
-  } = useMagnetic<HTMLDivElement>();
+  } = useMagnetic<HTMLButtonElement>();
 
   return (
     <div
-      style={{
-        border: pass.feature ? `1px solid ${ACCENT}` : "1px solid rgba(17,17,17,0.15)",
-        padding: "30px 28px 28px",
-        display: "flex",
-        flexDirection: "column",
-        background: pass.feature ? "rgba(234,31,69,0.06)" : "transparent",
-      }}
+      className={clsx(
+        "flex flex-col border px-7 pt-7.5 pb-7",
+        pass.feature ? "border-accent bg-accent/6" : "border-ink/15 bg-transparent"
+      )}
     >
-      <div
-        style={{
-          fontFamily: "var(--font-plex-mono), monospace",
-          fontSize: 11,
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
-          color: "rgba(17,17,17,0.5)",
-        }}
-      >
+      <div className="font-mono text-[11px] tracking-[0.16em] text-ink/50 uppercase">
         {pass.name}
       </div>
-      <div
-        style={{
-          fontFamily: "var(--font-archivo), sans-serif",
-          fontWeight: 800,
-          letterSpacing: "-0.02em",
-          fontSize: 56,
-          lineHeight: 1,
-          margin: "22px 0 20px",
-        }}
-      >
+      <div className="mt-5.5 mb-5 font-sans text-[56px] leading-none font-extrabold tracking-[-0.02em]">
         {pass.price}
       </div>
-      <div style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(17,17,17,0.62)", minHeight: 78 }}>
-        {pass.detail}
-      </div>
-      <div
+      <div className="min-h-19.5 text-sm leading-relaxed text-ink/62">{pass.detail}</div>
+      <button
         ref={bookRef}
+        type="button"
+        aria-label={`Book the ${pass.name}`}
         onMouseMove={bookMouseMove}
         onMouseLeave={bookMouseLeave}
-        style={{
-          marginTop: 26,
-          padding: "14px 0",
-          textAlign: "center",
-          cursor: "pointer",
-          fontFamily: "var(--font-plex-mono), monospace",
-          fontSize: 11,
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
-          background: pass.feature ? ACCENT : "transparent",
-          color: pass.feature ? "#FFFFFF" : "#111111",
-          border: pass.feature ? `1px solid ${ACCENT}` : "1px solid rgba(17,17,17,0.25)",
-        }}
+        className={clsx(
+          "mt-6.5 border py-3.5 text-center font-mono text-[11px] tracking-[0.16em] uppercase",
+          pass.feature
+            ? "border-accent bg-accent text-white"
+            : "border-ink/25 bg-transparent text-ink"
+        )}
       >
         Book
-      </div>
+      </button>
     </div>
   );
 }

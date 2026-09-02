@@ -1,147 +1,93 @@
 "use client";
 
+import Link from "next/link";
 import { useMagnetic } from "@/lib/hooks";
-import { ACCENT } from "@/data/festival";
 
 export default function Footer() {
   const {
     ref: joinRef,
     onMouseMove: joinMouseMove,
     onMouseLeave: joinMouseLeave,
-  } = useMagnetic<HTMLDivElement>();
+  } = useMagnetic<HTMLButtonElement>();
 
   return (
-    <footer
-      className="kk-hpad"
-      style={{
-        background: "#0E0E0E",
-        color: "#F4F3F1",
-        padding: "96px 40px 40px",
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1.6fr 1fr 1fr 1.4fr",
-          gap: 50,
-        }}
-        className="footer-grid"
-      >
+    <footer className="bg-charcoal px-10 pt-24 pb-10 text-paper max-[640px]:px-5">
+      <div className="grid grid-cols-[1.6fr_1fr_1fr_1.4fr] gap-12.5 max-[860px]:grid-cols-2 max-[860px]:gap-y-10 max-[560px]:grid-cols-1">
         <div>
-          <div
-            style={{
-              fontFamily: "var(--font-noto-malayalam), serif",
-              fontSize: 40,
-              lineHeight: 1,
-              letterSpacing: "0.04em",
-              marginBottom: 20,
-            }}
-          >
+          <div className="mb-5 font-malayalam text-4xl leading-none tracking-[0.04em]">
             ക ഖ ഗ
           </div>
-          <p
-            style={{
-              fontSize: 14,
-              lineHeight: 1.7,
-              color: "rgba(244,243,241,0.55)",
-              maxWidth: 280,
-              margin: 0,
-            }}
-          >
+          <p className="max-w-70 text-sm leading-relaxed text-paper/55">
             The Mirror Mind Literature Festival. Fourth edition, 15&ndash;18
             January 2027, Karunagappally.
           </p>
         </div>
-        <div>
-          <div className="footer-heading">Festival</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 14 }}>
-            <a className="footer-link" href="/programme">Programme</a>
-            <a className="footer-link" href="/voices">Voices</a>
-            <a className="footer-link" href="/venue">Venue &amp; passes</a>
+        <nav aria-label="Festival">
+          <div className="mb-4 font-mono text-[10px] tracking-[0.18em] text-paper/45 uppercase">
+            Festival
           </div>
-        </div>
-        <div>
-          <div className="footer-heading">More</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 14 }}>
-            <a className="footer-link" href="/journal">Journal</a>
-            <a className="footer-link" href="/about">About</a>
-            <a className="footer-link" href="#">Volunteer</a>
+          <div className="flex flex-col gap-2.5 text-sm">
+            <Link className="text-paper/82 hover:text-emerald" href="/programme">
+              Programme
+            </Link>
+            <Link className="text-paper/82 hover:text-emerald" href="/voices">
+              Voices
+            </Link>
+            <Link className="text-paper/82 hover:text-emerald" href="/venue">
+              Venue &amp; passes
+            </Link>
           </div>
-        </div>
+        </nav>
+        <nav aria-label="More">
+          <div className="mb-4 font-mono text-[10px] tracking-[0.18em] text-paper/45 uppercase">
+            More
+          </div>
+          <div className="flex flex-col gap-2.5 text-sm">
+            <Link className="text-paper/82 hover:text-emerald" href="/journal">
+              Journal
+            </Link>
+            <Link className="text-paper/82 hover:text-emerald" href="/about">
+              About
+            </Link>
+            <a className="text-paper/82 hover:text-emerald" href="#">
+              Volunteer
+            </a>
+          </div>
+        </nav>
         <div>
-          <div className="footer-heading">Programme drops in October</div>
-          <div style={{ display: "flex", gap: 8 }}>
+          <div className="mb-4 font-mono text-[10px] tracking-[0.18em] text-paper/45 uppercase">
+            Programme drops in October
+          </div>
+          <form
+            className="flex gap-2"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <label htmlFor="newsletter-email" className="sr-only">
+              Email address
+            </label>
             <input
+              id="newsletter-email"
+              type="email"
               placeholder="your email"
-              style={{
-                flex: 1,
-                padding: "13px 16px",
-                background: "transparent",
-                border: "1px solid rgba(244,243,241,0.24)",
-                color: "#F4F3F1",
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 12,
-                outline: "none",
-              }}
+              autoComplete="email"
+              className="min-w-0 flex-1 border border-paper/24 bg-transparent px-4 py-3.5 font-mono text-xs text-paper outline-none placeholder:text-paper/35 focus-visible:border-paper/60"
             />
-            <div
+            <button
               ref={joinRef}
+              type="submit"
               onMouseMove={joinMouseMove}
               onMouseLeave={joinMouseLeave}
-              style={{
-                padding: "13px 20px",
-                background: ACCENT,
-                color: "#FFFFFF",
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 11,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                cursor: "pointer",
-                transition: "transform .25s ease",
-              }}
+              className="border-none bg-accent px-5 py-3.5 font-mono text-[11px] tracking-[0.14em] text-white uppercase transition-transform duration-[250ms]"
             >
               Join
-            </div>
-          </div>
+            </button>
+          </form>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: 60,
-          paddingTop: 22,
-          borderTop: "1px solid rgba(244,243,241,0.14)",
-          fontFamily: "var(--font-plex-mono), monospace",
-          fontSize: 10,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: "rgba(244,243,241,0.4)",
-        }}
-        className="footer-bottom"
-      >
+      <div className="mt-15 flex justify-between border-t border-paper/14 pt-5.5 font-mono text-[10px] tracking-[0.14em] text-paper/40 uppercase max-[860px]:flex-col max-[860px]:gap-2">
         <span>&copy; 2027 KaKhaGa</span>
         <span>Karunagappally &mdash; 9.0544&deg; N, 76.5352&deg; E</span>
       </div>
-      <style>{`
-        .footer-heading {
-          font-family: var(--font-plex-mono), monospace;
-          font-size: 10px;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: rgba(244,243,241,0.45);
-          margin-bottom: 16px;
-        }
-        .footer-link { cursor: pointer; color: rgba(244,243,241,0.82); }
-        .footer-link:hover { color: #2FE08A; }
-        @media (max-width: 860px) {
-          .footer-grid { grid-template-columns: 1fr 1fr !important; row-gap: 40px; }
-          .footer-bottom { flex-direction: column; gap: 8px; }
-        }
-        @media (max-width: 560px) {
-          .footer-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </footer>
   );
 }

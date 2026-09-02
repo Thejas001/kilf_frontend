@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ACCENT, NAV } from "@/data/festival";
+import clsx from "clsx";
+import { NAV } from "@/data/festival";
 import { useMagnetic } from "@/lib/hooks";
 
 export default function Nav() {
@@ -12,142 +13,94 @@ export default function Nav() {
     ref: passesRef,
     onMouseMove: passesMouseMove,
     onMouseLeave: passesMouseLeave,
-  } = useMagnetic<HTMLDivElement>();
+  } = useMagnetic<HTMLAnchorElement>();
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
-    <nav
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 60,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "22px 40px",
-        backdropFilter: "blur(14px)",
-        background: "rgba(244,243,241,0.78)",
-        borderBottom: "1px solid rgba(17,17,17,0.09)",
-      }}
-      className="site-nav"
-    >
+    <nav className="fixed inset-x-0 top-0 z-[60] flex items-center justify-between border-b border-ink/10 bg-paper/80 px-10 py-5.5 backdrop-blur-md max-[880px]:px-5 max-[880px]:py-4.5">
       <Link
         href="/"
-        onClick={() => setOpen(false)}
-        style={{
-          display: "flex",
-          alignItems: "baseline",
-          gap: 12,
-          cursor: "pointer",
-          color: "#111111",
-          flexShrink: 0,
-          whiteSpace: "nowrap",
-        }}
+        className="flex shrink-0 items-baseline gap-3 whitespace-nowrap text-ink"
       >
-        <span
-          style={{
-            fontFamily: "var(--font-noto-malayalam), serif",
-            fontSize: 26,
-            lineHeight: 1,
-            letterSpacing: "0.04em",
-          }}
-        >
+        <span className="font-malayalam text-[26px] leading-none tracking-[0.04em]">
           ക ഖ ഗ
         </span>
-        <span
-          style={{
-            fontFamily: "var(--font-plex-mono), monospace",
-            fontSize: 11,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "rgba(17,17,17,0.5)",
-          }}
-        >
+        <span className="font-mono text-[11px] tracking-[0.18em] text-ink/50 uppercase">
           KaKhaGa
         </span>
       </Link>
 
-      <div className="site-nav-links" style={{ display: "flex", alignItems: "center", gap: 28 }}>
+      <div className="flex items-center gap-7 max-[880px]:hidden">
         {NAV.map((n) => {
           const active = pathname === n.route;
           return (
             <Link
               key={n.route}
               href={n.route}
-              style={{
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 11,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                cursor: "pointer",
-                color: active ? ACCENT : "rgba(17,17,17,0.65)",
-                transition: "color .3s ease",
-              }}
+              aria-current={active ? "page" : undefined}
+              className={clsx(
+                "font-mono text-[11px] tracking-[0.14em] uppercase transition-colors",
+                active ? "text-accent" : "text-ink/65 hover:text-ink"
+              )}
             >
               {n.label}
             </Link>
           );
         })}
-        <Link href="/venue" style={{ display: "block" }}>
-          <div
-            ref={passesRef}
-            onMouseMove={passesMouseMove}
-            onMouseLeave={passesMouseLeave}
-            className="passes-btn"
-            style={{
-              fontFamily: "var(--font-plex-mono), monospace",
-              fontSize: 11,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              padding: "10px 18px",
-              border: `1px solid ${ACCENT}`,
-              color: ACCENT,
-              cursor: "pointer",
-              transition: "background .35s ease,color .35s ease,transform .25s ease",
-            }}
-          >
-            Passes
-          </div>
+        <Link
+          ref={passesRef}
+          href="/venue"
+          onMouseMove={passesMouseMove}
+          onMouseLeave={passesMouseLeave}
+          className="border border-accent px-4.5 py-2.5 font-mono text-[11px] tracking-[0.14em] text-accent uppercase transition-[background-color,color] duration-300 hover:bg-accent hover:text-white"
+        >
+          Passes
         </Link>
       </div>
 
       <button
         type="button"
         aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        aria-controls="mobile-nav-panel"
         onClick={() => setOpen((v) => !v)}
-        className="nav-burger"
-        style={{
-          display: "none",
-          flexDirection: "column",
-          gap: 5,
-          background: "none",
-          border: "none",
-          padding: 8,
-          cursor: "pointer",
-        }}
+        className="hidden flex-col gap-1.5 border-none bg-none p-2 max-[880px]:flex"
       >
-        <span style={{ width: 22, height: 2, background: "#111111", display: "block", transition: "transform .25s ease", transform: open ? "translateY(7px) rotate(45deg)" : "none" }} />
-        <span style={{ width: 22, height: 2, background: "#111111", display: "block", opacity: open ? 0 : 1, transition: "opacity .2s ease" }} />
-        <span style={{ width: 22, height: 2, background: "#111111", display: "block", transition: "transform .25s ease", transform: open ? "translateY(-7px) rotate(-45deg)" : "none" }} />
+        <span
+          className={clsx(
+            "block h-0.5 w-5.5 bg-ink transition-transform duration-300",
+            open && "translate-y-2 rotate-45"
+          )}
+        />
+        <span
+          className={clsx(
+            "block h-0.5 w-5.5 bg-ink transition-opacity duration-200",
+            open && "opacity-0"
+          )}
+        />
+        <span
+          className={clsx(
+            "block h-0.5 w-5.5 bg-ink transition-transform duration-300",
+            open && "-translate-y-2 -rotate-45"
+          )}
+        />
       </button>
 
       <div
-        className="nav-mobile-panel"
-        style={{
-          display: open ? "flex" : "none",
-          position: "fixed",
-          top: 65,
-          left: 0,
-          right: 0,
-          zIndex: 59,
-          flexDirection: "column",
-          gap: 2,
-          padding: "10px 24px 26px",
-          background: "#F4F3F1",
-          borderBottom: "1px solid rgba(17,17,17,0.12)",
-        }}
+        id="mobile-nav-panel"
+        className={clsx(
+          "fixed inset-x-0 top-16 z-[59] flex-col gap-0.5 border-b border-ink/10 bg-paper px-6 pt-2.5 pb-6",
+          open ? "flex" : "hidden"
+        )}
       >
         {NAV.map((n) => {
           const active = pathname === n.route;
@@ -156,15 +109,11 @@ export default function Nav() {
               key={n.route}
               href={n.route}
               onClick={() => setOpen(false)}
-              style={{
-                fontFamily: "var(--font-plex-mono), monospace",
-                fontSize: 13,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: active ? ACCENT : "#111111",
-                padding: "14px 0",
-                borderTop: "1px solid rgba(17,17,17,0.1)",
-              }}
+              aria-current={active ? "page" : undefined}
+              className={clsx(
+                "border-t border-ink/10 py-3.5 font-mono text-[13px] tracking-[0.14em] uppercase",
+                active ? "text-accent" : "text-ink"
+              )}
             >
               {n.label}
             </Link>
@@ -173,28 +122,11 @@ export default function Nav() {
         <Link
           href="/venue"
           onClick={() => setOpen(false)}
-          style={{
-            fontFamily: "var(--font-plex-mono), monospace",
-            fontSize: 13,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: ACCENT,
-            padding: "14px 0",
-            borderTop: "1px solid rgba(17,17,17,0.1)",
-          }}
+          className="border-t border-ink/10 py-3.5 font-mono text-[13px] tracking-[0.14em] text-accent uppercase"
         >
           Passes
         </Link>
       </div>
-
-      <style>{`
-        .passes-btn:hover { background: ${ACCENT}; color: #FFFFFF; }
-        @media (max-width: 880px) {
-          .site-nav { padding: 18px 20px; }
-          .site-nav-links { display: none !important; }
-          .nav-burger { display: flex !important; }
-        }
-      `}</style>
     </nav>
   );
 }
