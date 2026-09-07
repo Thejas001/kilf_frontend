@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Malayalam:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#F4F3F1;}
+  *{box-sizing:border-box;}
+  ::selection{background:#EA1F45;color:#FFFFFF;}
+  a{color:#111111;text-decoration:none;}
+  a:hover{color:#EA1F45;}
+  input::placeholder{color:rgba(17,17,17,0.35);}
+  ::-webkit-scrollbar{width:9px;}
+  ::-webkit-scrollbar-track{background:#F4F3F1;}
+  ::-webkit-scrollbar-thumb{background:rgba(17,17,17,0.18);}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes floatA{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  @keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-27px)}}
+  @keyframes floatC{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+  @keyframes flipPageA{0%{transform:perspective(700px) rotateX(-88deg)}62%{transform:perspective(700px) rotateX(7deg)}100%{transform:perspective(700px) rotateX(0)}}
+  @keyframes flipPageB{0%{transform:perspective(700px) rotateX(-88deg)}62%{transform:perspective(700px) rotateX(7deg)}100%{transform:perspective(700px) rotateX(0)}}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+<div ref="{{ setRoot }}" style="background:#F4F3F1;background-image:repeating-linear-gradient(101deg, rgba(17,17,17,0.018) 0 2px, transparent 2px 7px),repeating-linear-gradient(-7deg, rgba(17,17,17,0.014) 0 1px, transparent 1px 9px),radial-gradient(120% 80% at 70% 0%, rgba(17,17,17,0.035), transparent 60%);color:#111111;font-family:'Archivo',sans-serif;min-height:100vh;position:relative;overflow-x:hidden;">
+
+<div style="{{ progressStyle }}"></div>
+<nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:22px 40px;mix-blend-mode:normal;backdrop-filter:blur(14px);background:rgba(244,243,241,0.78);border-bottom:1px solid rgba(17,17,17,0.09);">
+  <div onClick="{{ goHome }}" style="display:flex;align-items:baseline;gap:12px;cursor:pointer;">
+    <span style="font-family:'Noto Serif Malayalam',serif;font-size:26px;line-height:1;letter-spacing:0.04em;">ക ഖ ഗ</span>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(17,17,17,0.5);">KaKhaGa</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:28px;">
+    <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+      <div onClick="{{ setRoute }}" data-route="{{ n.route }}" style="{{ n.style }}">{{ n.label }}</div>
+    </sc-for>
+    <div onClick="{{ goTickets }}" onMouseMove="{{ magnetMove }}" onMouseLeave="{{ magnetLeave }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;padding:10px 18px;border:1px solid #EA1F45;color:#EA1F45;cursor:pointer;transition:background .35s ease,color .35s ease,transform .25s ease;" style-hover="background:#EA1F45;color:#FFFFFF;">Passes</div>
+  </div>
+</nav>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div>
+  <section onMouseMove="{{ heroMove }}" onMouseLeave="{{ heroLeave }}" style="padding:150px 40px 0;position:relative;overflow:hidden;">
+    <div style="{{ paperSheetA }}"></div>
+    <div style="{{ paperSheetB }}"></div>
+    <div style="{{ turningPage }}"><div style="{{ turningPageShade }}"></div></div>
+    <div style="{{ decorArcA }}"></div>
+    <div style="{{ decorBlobWrap }}"><div style="{{ decorBlob }}"></div></div>
+    <div style="{{ decorArcB }}"></div>
+    <div style="position:relative;z-index:2;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(17,17,17,0.5);border-bottom:1px solid rgba(17,17,17,0.12);padding-bottom:14px;">
+      <span>Capital Media presents</span>
+      <span style="display:flex;align-items:center;gap:14px;color:#111111;">
+        <sc-for list="{{ countdown }}" as="u" hint-placeholder-count="4">
+          <span style="{{ u.stripStyle }}"><span style="{{ u.stripNumStyle }}">{{ u.value }}</span>{{ u.short }}</span>
+        </sc-for>
+      </span>
+      <span>15&ndash;18 Jan 2027 &middot; Karunagappally</span>
+    </div>
+    <div style="position:relative;z-index:2;margin:52px 0 0;">
+      <div style="font-family:'Noto Serif Malayalam',serif;font-size:clamp(64px,11vw,176px);line-height:1;letter-spacing:0.02em;color:#111111;">ക ഖ ഗ</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.34em;text-transform:uppercase;color:#EA1F45;margin:22px 0 10px;">The Mirror Mind</div>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(44px,8.4vw,132px);line-height:0.94;letter-spacing:-0.03em;text-transform:uppercase;margin:0;">
+        <span style="display:flex;flex-wrap:nowrap;">
+          <sc-for list="{{ heroLettersTop }}" as="l" hint-placeholder-count="10">
+            <span style="{{ l.style }}">{{ l.ch }}</span>
+          </sc-for>
+        </span>
+        <span style="display:flex;flex-wrap:nowrap;">
+          <sc-for list="{{ heroLettersBottom }}" as="l" hint-placeholder-count="8">
+            <span style="{{ l.style }}">{{ l.ch }}</span>
+          </sc-for>
+        </span>
+      </h1>
+    </div>
+    <div style="position:relative;z-index:2;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end;margin-top:52px;padding-bottom:60px;">
+      <div style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:clamp(24px,3vw,40px);line-height:1.25;color:rgba(17,17,17,0.9);max-width:760px;">Four days for the written word &mdash; in Malayalam, and everything it listens to.</div>
+      <div style="font-size:15px;line-height:1.7;color:rgba(17,17,17,0.6);">A festival of readings, arguments, translation and late-night poetry in Karunagappally. Ninety sessions. Six stages. One shared language of attention.</div>
+    </div>
+    <div style="{{ heroClusterStyle }}">
+      <sc-for list="{{ heroCards }}" as="hc" hint-placeholder-count="3">
+        <div style="{{ hc.outerStyle }}">
+          <div style="{{ hc.innerStyle }}">
+            <image-slot id="{{ hc.slotId }}" shape="rounded" radius="20" src="{{ hc.src }}" placeholder="{{ hc.ph }}"></image-slot>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:70px 0;border-top:1px solid rgba(17,17,17,0.12);border-bottom:1px solid rgba(17,17,17,0.12);overflow:hidden;">
+    <div style="{{ marqueeStyle }}">
+      <sc-for list="{{ marqueeNames }}" as="m" hint-placeholder-count="12">
+        <span style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:44px;padding:0 28px;white-space:nowrap;color:rgba(17,17,17,0.82);">{{ m }} <span style="color:#EA1F45;font-size:22px;vertical-align:middle;">&#9679;</span></span>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-reveal-id="sessions" style="{{ revealStyle.sessions }}padding:110px 40px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:50px;">
+      <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(17,17,17,0.5);margin:0;">Selected sessions</h2>
+      <div onClick="{{ goProgramme }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;color:#EA1F45;">Full programme &rarr;</div>
+    </div>
+    <div onMouseMove="{{ trackCursor }}" onMouseLeave="{{ clearHover }}">
+      <sc-for list="{{ featuredSessions }}" as="s" hint-placeholder-count="5">
+        <div onMouseEnter="{{ hoverRow }}" data-key="{{ s.id }}" onClick="{{ goProgramme }}" style="{{ s.rowStyle }}">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:rgba(17,17,17,0.45);width:60px;flex:0 0 60px;">{{ s.num }}</span>
+          <span style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:clamp(24px,3.2vw,44px);line-height:1.1;flex:1;">{{ s.title }}</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(17,17,17,0.5);width:220px;flex:0 0 220px;text-align:right;">{{ s.meta }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="{{ sessionPeekStyle }}">{{ sessionPeekText }}</div>
+  <section data-reveal-id="about" style="{{ revealStyle.about }}padding:0 40px 110px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div style="{{ aboutImageStyle }}">
+      <image-slot id="kkg-about" shape="rounded" radius="20" src="https://picsum.photos/seed/kkg-tent/900/1200" placeholder="Reading tent, last edition"></image-slot>
+    </div>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(17,17,17,0.5);margin-bottom:28px;">About</div>
+      <p style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:32px;line-height:1.3;margin:0 0 28px;">KaKhaGa takes its name from the first three letters a Malayali child learns to write.</p>
+      <p style="font-size:15px;line-height:1.8;color:rgba(17,17,17,0.62);margin:0 0 20px;">It began in 2021 as a two-room gathering of translators in Thrissur. Four editions later it fills a beachfront with poets, publishers, students and readers who argue past midnight.</p>
+      <p style="font-size:15px;line-height:1.8;color:rgba(17,17,17,0.62);margin:0 0 34px;">Every session is free to attend for students. Everything else is paid for by the people who show up.</p>
+      <div onClick="{{ goAbout }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;color:#EA1F45;">Our history &rarr;</div>
+    </div>
+  </section>
+
+  <section data-reveal-id="voicesHome" style="{{ revealStyle.voicesHome }}padding:0 40px 110px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:40px;border-top:1px solid rgba(17,17,17,0.12);padding-top:30px;">
+      <h2 style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(17,17,17,0.5);margin:0;">Voices, 2027</h2>
+      <div onClick="{{ goVoices }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;color:#EA1F45;">All 42 &rarr;</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;">
+      <sc-for list="{{ homeSpeakers }}" as="p" hint-placeholder-count="4">
+        <div onClick="{{ goVoices }}" style="min-width:0;cursor:pointer;transition:transform .5s cubic-bezier(.16,1,.3,1);" style-hover="transform:translateY(-10px);">
+          <div style="{{ p.imgStyle }}">
+            <image-slot id="{{ p.slotId }}" shape="rounded" radius="20" src="{{ p.src }}" placeholder="Portrait"></image-slot>
+          </div>
+          <div style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:22px;margin-top:16px;">{{ p.name }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(17,17,17,0.45);margin-top:6px;">{{ p.role }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProgramme }}" hint-placeholder-val="{{ false }}">
+<section style="padding:150px 40px 110px;">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(17,17,17,0.5);">/programme</div>
+  <h1 style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-weight:800;font-size:clamp(48px,8vw,120px);line-height:0.95;margin:24px 0 50px;">Ninety sessions,<br/>four days.</h1>
+  <div style="display:flex;gap:10px;border-bottom:1px solid rgba(17,17,17,0.12);padding-bottom:24px;margin-bottom:10px;">
+    <sc-for list="{{ dayTabs }}" as="d" hint-placeholder-count="4">
+      <div onClick="{{ setDay }}" data-day="{{ d.key }}" style="{{ d.style }}">{{ d.label }}</div>
+    </sc-for>
+  </div>
+  <div onMouseMove="{{ trackCursor }}" onMouseLeave="{{ clearHover }}">
+    <sc-for list="{{ daySessions }}" as="s" hint-placeholder-count="5">
+      <div onMouseEnter="{{ hoverRow }}" data-key="{{ s.id }}" style="{{ s.rowStyle }}">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(17,17,17,0.5);width:110px;flex:0 0 110px;">{{ s.time }}</span>
+        <div style="flex:1;">
+          <div style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:clamp(22px,2.6vw,34px);line-height:1.15;">{{ s.title }}</div>
+          <div style="font-size:13px;color:rgba(17,17,17,0.55);margin-top:8px;">{{ s.people }}</div>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(17,17,17,0.5);width:200px;flex:0 0 200px;text-align:right;">{{ s.stage }}<br/>{{ s.lang }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="{{ sessionPeekStyle }}">{{ sessionPeekText }}</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isVoices }}" hint-placeholder-val="{{ false }}">
+<section onMouseMove="{{ trackCursor }}" style="padding:150px 40px 110px;">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(17,17,17,0.5);">/voices</div>
+  <h1 style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-weight:800;font-size:clamp(48px,8vw,120px);line-height:0.95;margin:24px 0 20px;">Writers, translators,<br/>troublemakers.</h1>
+  <p style="font-size:15px;color:rgba(17,17,17,0.55);max-width:520px;margin:0 0 60px;">Hover a name to see them. Forty-two participants across ten languages.</p>
+  <div onMouseLeave="{{ clearHover }}">
+    <sc-for list="{{ speakersRendered }}" as="p" hint-placeholder-count="8">
+      <div onMouseEnter="{{ hoverRow }}" data-key="{{ p.id }}" style="{{ p.rowStyle }}">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(17,17,17,0.4);width:60px;flex:0 0 60px;">{{ p.num }}</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:clamp(26px,3.4vw,48px);line-height:1.05;flex:1;">{{ p.name }}</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(17,17,17,0.5);width:280px;flex:0 0 280px;text-align:right;">{{ p.role }} &mdash; {{ p.lang }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="{{ cursorPreviewStyle }}">
+    <div style="{{ cursorPreviewCaptionStyle }}">{{ hoveredName }}</div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isVenue }}" hint-placeholder-val="{{ false }}">
+<section style="padding:150px 40px 110px;">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(17,17,17,0.5);">/venue &amp; passes</div>
+  <h1 style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-weight:800;font-size:clamp(48px,8vw,120px);line-height:0.95;margin:24px 0 50px;">Karunagappally.</h1>
+  <div style="{{ venueImageStyle }}">
+    <image-slot id="kkg-venue" shape="rounded" radius="20" src="https://picsum.photos/seed/kkg-venue/1600/900" placeholder="Venue / aerial of the festival ground"></image-slot>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin:70px 0 90px;">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(17,17,17,0.45);margin-bottom:14px;">Getting there</div>
+      <p style="font-size:15px;line-height:1.75;color:rgba(17,17,17,0.7);margin:0;">Two kilometres from Karunagappally bus stand. Shuttles run every twenty minutes from the town square, 08:00&ndash;23:30.</p>
+    </div>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(17,17,17,0.45);margin-bottom:14px;">Six stages</div>
+      <p style="font-size:15px;line-height:1.75;color:rgba(17,17,17,0.7);margin:0;">Sand Stage, The Long Table, Translation Room, Poetry Shed, Children's Yard, and the Late Hall &mdash; open until 01:00.</p>
+    </div>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(17,17,17,0.45);margin-bottom:14px;">Access</div>
+      <p style="font-size:15px;line-height:1.75;color:rgba(17,17,17,0.7);margin:0;">All stages are step-free. Live captioning in the Long Table and Translation Room. Quiet room beside the Poetry Shed.</p>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(17,17,17,0.12);padding-top:40px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(17,17,17,0.5);margin-bottom:30px;">Passes</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <sc-for list="{{ passes }}" as="t" hint-placeholder-count="3">
+        <div style="{{ t.cardStyle }}">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(17,17,17,0.5);">{{ t.name }}</div>
+          <div style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:56px;line-height:1;margin:22px 0 20px;">{{ t.price }}</div>
+          <div style="font-size:14px;line-height:1.7;color:rgba(17,17,17,0.62);min-height:78px;">{{ t.detail }}</div>
+          <div onClick="{{ noop }}" onMouseMove="{{ magnetMove }}" onMouseLeave="{{ magnetLeave }}" style="{{ t.btnStyle }}">Book</div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-size:13px;color:rgba(17,17,17,0.45);margin-top:24px;">Students enter free with a valid ID. Volunteer applications open in October.</p>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isJournal }}" hint-placeholder-val="{{ false }}">
+<section style="padding:150px 40px 110px;">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(17,17,17,0.5);">/journal</div>
+  <h1 style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-weight:800;font-size:clamp(48px,8vw,120px);line-height:0.95;margin:24px 0 50px;">Notes between<br/>editions.</h1>
+  <div onMouseLeave="{{ clearHover }}">
+    <sc-for list="{{ journalRendered }}" as="j" hint-placeholder-count="4">
+      <div onMouseEnter="{{ hoverRow }}" data-key="{{ j.id }}" style="{{ j.rowStyle }}">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(17,17,17,0.45);width:130px;flex:0 0 130px;">{{ j.date }}</span>
+        <div style="{{ j.thumbStyle }}"></div>
+        <div style="flex:1;">
+          <div style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:clamp(24px,2.8vw,38px);line-height:1.15;">{{ j.title }}</div>
+          <div style="font-size:14px;color:rgba(17,17,17,0.55);margin-top:8px;max-width:620px;">{{ j.excerpt }}</div>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(17,17,17,0.45);width:120px;flex:0 0 120px;text-align:right;">{{ j.kind }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+<section style="padding:150px 40px 110px;">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(17,17,17,0.5);">/about</div>
+  <h1 style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-weight:800;font-size:clamp(48px,8vw,120px);line-height:0.95;margin:24px 0 40px;">ക ഖ ഗ</h1>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:90px;">
+    <p style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:30px;line-height:1.35;margin:0;">Ka, kha, ga. The first three letters a Malayali child learns to write, and the smallest possible name for a festival about beginnings.</p>
+    <div>
+      <p style="font-size:15px;line-height:1.8;color:rgba(17,17,17,0.65);margin:0 0 18px;">We started in a rented hall in Thrissur with eleven translators and no budget. The idea was narrow: put writers who work between languages in the same room and let the audience listen in.</p>
+      <p style="font-size:15px;line-height:1.8;color:rgba(17,17,17,0.65);margin:0;">The festival has grown, but the shape has not changed. No keynote stages, no closed rooms, no session longer than an hour. Everything happens in public.</p>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(17,17,17,0.12);">
+    <sc-for list="{{ editions }}" as="e" hint-placeholder-count="4">
+      <div style="display:flex;gap:40px;align-items:baseline;padding:34px 0;border-bottom:1px solid rgba(17,17,17,0.12);">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#EA1F45;width:60px;flex:0 0 60px;">{{ e.num }}</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:34px;width:200px;flex:0 0 200px;">{{ e.year }}</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-0.02em;font-size:26px;flex:1;">{{ e.city }}</span>
+        <span style="font-size:14px;color:rgba(17,17,17,0.55);flex:1;">{{ e.note }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<footer style="background:#0E0E0E;color:#F4F3F1;padding:96px 40px 40px;">
+  <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:50px;">
+    <div>
+      <div style="font-family:'Noto Serif Malayalam',serif;font-size:40px;line-height:1;letter-spacing:0.04em;margin-bottom:20px;">ക ഖ ഗ</div>
+      <p style="font-size:14px;line-height:1.7;color:rgba(244,243,241,0.55);max-width:280px;margin:0;">The Mirror Mind Literature Festival. Fourth edition, 15&ndash;18 January 2027, Karunagappally.</p>
+    </div>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,243,241,0.45);margin-bottom:16px;">Festival</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;">
+        <div onClick="{{ goProgramme }}" style="cursor:pointer;color:rgba(244,243,241,0.82);" style-hover="color:#2FE08A;">Programme</div>
+        <div onClick="{{ goVoices }}" style="cursor:pointer;color:rgba(244,243,241,0.82);" style-hover="color:#2FE08A;">Voices</div>
+        <div onClick="{{ goTickets }}" style="cursor:pointer;color:rgba(244,243,241,0.82);" style-hover="color:#2FE08A;">Venue &amp; passes</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,243,241,0.45);margin-bottom:16px;">More</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;">
+        <div onClick="{{ goJournal }}" style="cursor:pointer;color:rgba(244,243,241,0.82);" style-hover="color:#2FE08A;">Journal</div>
+        <div onClick="{{ goAbout }}" style="cursor:pointer;color:rgba(244,243,241,0.82);" style-hover="color:#2FE08A;">About</div>
+        <a href="#" style="color:rgba(244,243,241,0.82);">Volunteer</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,243,241,0.45);margin-bottom:16px;">Programme drops in October</div>
+      <div style="display:flex;gap:8px;">
+        <input placeholder="your email" style="flex:1;padding:13px 16px;background:transparent;border:1px solid rgba(244,243,241,0.24);color:#F4F3F1;font-family:'IBM Plex Mono',monospace;font-size:12px;outline:none;"/>
+        <div onClick="{{ noop }}" onMouseMove="{{ magnetMove }}" onMouseLeave="{{ magnetLeave }}" style="padding:13px 20px;background:#EA1F45;color:#FFFFFF;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:transform .25s ease;">Join</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;margin-top:60px;padding-top:22px;border-top:1px solid rgba(244,243,241,0.14);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,243,241,0.4);">
+    <span>&copy; 2027 KaKhaGa</span>
+    <span>Karunagappally &mdash; 9.0544&deg; N, 76.5352&deg; E</span>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+const ACCENT = '#EA1F45';
+const NAV = [
+  {route:'programme',label:'/programme'},
+  {route:'voices',label:'/voices'},
+  {route:'venue',label:'/venue'},
+  {route:'journal',label:'/journal'},
+  {route:'about',label:'/about'}
+];
+const SPEAKERS = [
+  {id:'s1',name:'Ammu Sreedharan',role:'Poet',lang:'Malayalam'},
+  {id:'s2',name:'Rehan Qureshi',role:'Novelist',lang:'Urdu / English'},
+  {id:'s3',name:'Leela Thampuran',role:'Translator',lang:'Malayalam / Tamil'},
+  {id:'s4',name:'Joseph Vadakkan',role:'Essayist',lang:'Malayalam'},
+  {id:'s5',name:'Nandita Bose',role:'Publisher',lang:'Bengali'},
+  {id:'s6',name:'Fathima Rasheed',role:'Playwright',lang:'Malayalam / Arabic'},
+  {id:'s7',name:'Kiran Mattancherry',role:'Graphic novelist',lang:'English'},
+  {id:'s8',name:'Devika Iyer',role:'Critic',lang:'Tamil / English'},
+  {id:'s9',name:'Abbas Mehdi',role:'Poet',lang:'Kashmiri'},
+  {id:'s10',name:'Sara Kuriakose',role:'Memoirist',lang:'Malayalam'},
+  {id:'s11',name:'Thomas Ittira',role:'Historian',lang:'English'},
+  {id:'s12',name:'Meenakshi Warrier',role:'Screenwriter',lang:'Malayalam'}
+];
+const SESSIONS = {
+  d1:[
+    {id:'a1',time:'10:00',title:'The first three letters',people:'Ammu Sreedharan, Leela Thampuran, Joseph Vadakkan',stage:'Sand Stage',lang:'Malayalam'},
+    {id:'a2',time:'12:30',title:'What survives translation',people:'Leela Thampuran, Devika Iyer',stage:'Translation Room',lang:'Bilingual'},
+    {id:'a3',time:'15:00',title:'A publisher reads her rejections',people:'Nandita Bose',stage:'The Long Table',lang:'English'},
+    {id:'a4',time:'18:30',title:'Opening reading: nine poets, nine minutes each',people:'Nine participants',stage:'Sand Stage',lang:'Multilingual'},
+    {id:'a5',time:'21:00',title:'Late Hall: verse and arrack',people:'Open floor',stage:'Late Hall',lang:'Malayalam'}
+  ],
+  d2:[
+    {id:'b1',time:'09:30',title:'Writing the coast',people:'Sara Kuriakose, Thomas Ittira',stage:'The Long Table',lang:'Malayalam'},
+    {id:'b2',time:'11:30',title:'The novel is not tired',people:'Rehan Qureshi, Meenakshi Warrier',stage:'Sand Stage',lang:'English'},
+    {id:'b3',time:'14:00',title:'Drawing what cannot be said',people:'Kiran Mattancherry',stage:'Poetry Shed',lang:'English'},
+    {id:'b4',time:'16:30',title:'Kashmiri, out loud',people:'Abbas Mehdi',stage:'Translation Room',lang:'Kashmiri'},
+    {id:'b5',time:'19:00',title:'Malayalam theatre after the pandemic',people:'Fathima Rasheed and company',stage:'Late Hall',lang:'Malayalam'}
+  ],
+  d3:[
+    {id:'c1',time:'10:00',title:'Children write the sea',people:'Workshop, ages 8–13',stage:"Children's Yard",lang:'Malayalam'},
+    {id:'c2',time:'12:00',title:'Criticism as a form of love',people:'Devika Iyer, Joseph Vadakkan',stage:'The Long Table',lang:'English'},
+    {id:'c3',time:'15:30',title:'Six ways to open a book',people:'Rehan Qureshi',stage:'Poetry Shed',lang:'English'},
+    {id:'c4',time:'17:30',title:'The archive is a rumour',people:'Thomas Ittira, Nandita Bose',stage:'Translation Room',lang:'Bilingual'},
+    {id:'c5',time:'20:30',title:'Night poetry, unmoderated',people:'Open floor',stage:'Late Hall',lang:'Multilingual'}
+  ],
+  d4:[
+    {id:'e1',time:'10:30',title:'A letter to the next edition',people:'Ammu Sreedharan',stage:'Sand Stage',lang:'Malayalam'},
+    {id:'e2',time:'13:00',title:'Small presses, long games',people:'Nandita Bose, Kiran Mattancherry',stage:'The Long Table',lang:'English'},
+    {id:'e3',time:'16:00',title:'What we got wrong this year',people:'Festival team, in public',stage:'Translation Room',lang:'Bilingual'},
+    {id:'e4',time:'18:00',title:'Closing: the last reading on the sand',people:'All participants',stage:'Sand Stage',lang:'Multilingual'}
+  ]
+};
+const DAY_TABS = [
+  {key:'d1',label:'Day 01 — 15 Jan'},
+  {key:'d2',label:'Day 02 — 16 Jan'},
+  {key:'d3',label:'Day 03 — 17 Jan'},
+  {key:'d4',label:'Day 04 — 18 Jan'}
+];
+const JOURNAL = [
+  {id:'j1',date:'12 Jun 2026',title:'Notes on choosing a beach over a convention centre',excerpt:'Why the fourth edition moves out of a hall and onto sand, and what that costs.',kind:'Note'},
+  {id:'j2',date:'28 Apr 2026',title:'Nine translators on the word they cannot carry across',excerpt:'A short survey, conducted over WhatsApp, of untranslatable Malayalam.',kind:'Feature'},
+  {id:'j3',date:'03 Mar 2026',title:'The 003 edition, in numbers',excerpt:'Sixty-four sessions, 11,400 attendees, one power cut during a poetry reading.',kind:'Report'},
+  {id:'j4',date:'19 Jan 2026',title:'What the Late Hall taught us about programming after midnight',excerpt:'The best sessions were the ones nobody scheduled.',kind:'Note'}
+];
+const PASSES = [
+  {name:'Day pass',price:'\u20B9499',detail:'Any single day, all six stages. Available at the gate while capacity lasts.',feature:false},
+  {name:'Festival pass',price:'\u20B91,499',detail:'All four days, priority seating in the Translation Room, printed programme.',feature:true},
+  {name:'Patron',price:'\u20B94,999',detail:'All four days, the Long Table dinner, and one student pass gifted in your name.',feature:false}
+];
+const EDITIONS = [
+  {num:'001',year:'2021',city:'Thrissur',note:'Eleven translators, one rented hall, no budget.'},
+  {num:'002',year:'2023',city:'Kochi',note:'First open call. Twenty-eight sessions across a warehouse.'},
+  {num:'003',year:'2025',city:'Thiruvananthapuram',note:'Sixty-four sessions. The Late Hall begins.'},
+  {num:'004',year:'2027',city:'Karunagappally',note:'Ninety sessions across the town. 15\u201318 January.'}
+];
+
+function placeholderBox(ratioPaddingTop){
+  return {
+    width:'100%', paddingTop: ratioPaddingTop, position:'relative',
+    background:'repeating-linear-gradient(135deg, rgba(17,17,17,0.06) 0 10px, rgba(17,17,17,0.02) 10px 20px)',
+    border:'1px solid rgba(17,17,17,0.12)',
+    display:'flex', alignItems:'center', justifyContent:'center', overflow:'hidden'
+  };
+}
+function centeredLabelBox(paddingTop){
+  return { ...placeholderBox(paddingTop), paddingTop: 0, height: 0, minHeight: 0 };
+}
+
+class Component extends DCLogic {
+  state = { route:'home', day:'d1', hovered:null, cx:0, cy:0, hx:0, hy:0, sy:0, sp:0, now: Date.now(), revealed:{} };
+
+  componentDidMount(){
+    this._onScroll = () => {
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      this.setState({ sy: window.scrollY, sp: Math.min(1, window.scrollY / max) });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    this._tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
+  }
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this._onScroll);
+    clearInterval(this._tick);
+  }
+
+  magnetMove = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+    const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+    e.currentTarget.style.transform = 'translate(' + (dx * 14).toFixed(1) + 'px,' + (dy * 10).toFixed(1) + 'px)';
+  };
+  magnetLeave = (e) => { e.currentTarget.style.transform = 'translate(0,0)'; };
+
+  setRoot = (el) => { this.rootEl = el; };
+  go = (route) => { this.setState({ route, hovered:null }); window.scrollTo(0,0); };
+  setRoute = (e) => this.go(e.currentTarget.getAttribute('data-route'));
+  goHome = () => this.go('home');
+  goProgramme = () => this.go('programme');
+  goVoices = () => this.go('voices');
+  goTickets = () => this.go('venue');
+  goJournal = () => this.go('journal');
+  goAbout = () => this.go('about');
+  setDay = (e) => this.setState({ day: e.currentTarget.getAttribute('data-day'), hovered:null });
+  hoverRow = (e) => this.setState({ hovered: e.currentTarget.getAttribute('data-key') });
+  clearHover = () => this.setState({ hovered:null });
+  trackCursor = (e) => this.setState({ cx: e.clientX, cy: e.clientY });
+  heroMove = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    this.setState({
+      hx: ((e.clientX - r.left) / r.width) * 2 - 1,
+      hy: ((e.clientY - r.top) / r.height) * 2 - 1
+    });
+  };
+  heroLeave = () => this.setState({ hx:0, hy:0 });
+  noop = () => {};
+
+  rowStyle(key, opts){
+    const on = this.state.hovered === key;
+    return {
+      display:'flex', alignItems: opts && opts.align ? opts.align : 'center', gap:24,
+      padding: opts && opts.pad ? opts.pad : '30px 0',
+      borderTop:'1px solid rgba(17,17,17,0.12)',
+      cursor:'pointer',
+      color: on ? ACCENT : '#111111',
+      paddingLeft: on ? 20 : 0,
+      background: on ? 'rgba(234,31,69,0.05)' : 'transparent',
+      transition:'padding-left .45s cubic-bezier(.16,1,.3,1), color .35s ease, background .35s ease'
+    };
+  }
+
+  renderVals(){
+    const r = this.state.route;
+    const navItems = NAV.map(n => ({
+      ...n,
+      style: {
+        fontFamily:"'IBM Plex Mono',monospace", fontSize:11, letterSpacing:'0.14em',
+        textTransform:'uppercase', cursor:'pointer',
+        color: r === n.route ? ACCENT : 'rgba(17,17,17,0.65)',
+        transition:'color .3s ease'
+      }
+    }));
+
+    const revealFor = () => '';
+
+    const featuredSessions = [SESSIONS.d1[0], SESSIONS.d2[1], SESSIONS.d3[4], SESSIONS.d4[2], SESSIONS.d2[3]]
+      .map((s, i) => ({
+        id: 'f' + i,
+        num: '00' + (i + 1),
+        title: s.title,
+        meta: s.stage + ' / ' + s.time,
+        rowStyle: this.rowStyle('f' + i)
+      }));
+
+    const daySessions = SESSIONS[this.state.day].map(s => ({
+      ...s, rowStyle: this.rowStyle(s.id, { align:'flex-start', pad:'28px 0' })
+    }));
+
+    const speakersRendered = SPEAKERS.map((p, i) => ({
+      ...p,
+      num: (i + 1 < 10 ? '00' : '0') + (i + 1),
+      rowStyle: this.rowStyle(p.id, { pad:'26px 0' })
+    }));
+
+    const homeSpeakers = SPEAKERS.slice(0, 4).map((p, i) => ({
+      ...p,
+      slotId: 'kkg-portrait-' + p.id,
+      src: 'https://picsum.photos/seed/kkg-face-' + p.id + '/700/900',
+      imgStyle: {
+        width:'100%', height:300, borderRadius:20, overflow:'hidden',
+        boxShadow:'0 34px 60px -34px rgba(17,17,17,0.42)',
+        animation: ['floatA 7.5s','floatC 8.5s','floatB 9.5s','floatA 8s'][i] + ' ease-in-out infinite',
+        animationDelay: (i * 0.55) + 's'
+      }
+    }));
+
+    const journalRendered = JOURNAL.map(j => ({
+      ...j,
+      rowStyle: this.rowStyle(j.id, { align:'flex-start', pad:'30px 0' }),
+      thumbStyle: {
+        flex:'0 0 150px', width:150, height:100, borderRadius:20, overflow:'hidden',
+        backgroundImage:'url(https://picsum.photos/seed/kkg-' + j.id + '/600/400)',
+        backgroundSize:'cover', backgroundPosition:'center',
+        boxShadow:'0 20px 40px -24px rgba(17,17,17,0.4)',
+        transform: this.state.hovered === j.id ? 'scale(1.04)' : 'scale(1)',
+        transition:'transform .5s cubic-bezier(.16,1,.3,1)'
+      }
+    }));
+
+    const passes = PASSES.map(t => ({
+      ...t,
+      cardStyle: {
+        border: t.feature ? '1px solid ' + ACCENT : '1px solid rgba(17,17,17,0.15)',
+        padding:'30px 28px 28px', display:'flex', flexDirection:'column',
+        background: t.feature ? 'rgba(234,31,69,0.06)' : 'transparent'
+      },
+      btnStyle: {
+        marginTop:26, padding:'14px 0', textAlign:'center', cursor:'pointer',
+        fontFamily:"'IBM Plex Mono',monospace", fontSize:11, letterSpacing:'0.16em', textTransform:'uppercase',
+        background: t.feature ? ACCENT : 'transparent',
+        color: t.feature ? '#FFFFFF' : '#111111',
+        border: t.feature ? '1px solid ' + ACCENT : '1px solid rgba(17,17,17,0.25)'
+      }
+    }));
+
+    const imgBox = (h) => ({
+      position:'relative', zIndex:2, width:'100%', height:h, borderRadius:20, overflow:'hidden',
+      boxShadow:'0 40px 80px -40px rgba(17,17,17,0.45), 0 2px 0 rgba(255,255,255,0.6)'
+    });
+
+    const hx = this.state.hx, hy = this.state.hy, sy = this.state.sy;
+    const par = (fx, fy, extra) => `translate3d(${(hx*fx).toFixed(2)}px, ${(hy*fy).toFixed(2)}px, 0)${extra || ''}`;
+    const smooth = 'transform .7s cubic-bezier(.16,1,.3,1)';
+
+    const cursorT = (hx + 1) / 2;
+    const paperSheetA = {
+      position:'absolute', left:'-7%', top:110, width:'34vw', height:640, maxWidth:520,
+      background:'#FFFFFF', borderRadius:'6px 14px 14px 6px', zIndex:0, pointerEvents:'none', opacity:0.85,
+      boxShadow:'0 60px 100px -60px rgba(17,17,17,0.5)',
+      transform: par(-9, -7) + ' rotate(-6.5deg) translateY(' + (sy * -0.045).toFixed(1) + 'px)',
+      transition: smooth
+    };
+    const paperSheetB = {
+      position:'absolute', left:'16%', top:190, width:'30vw', height:560, maxWidth:460,
+      background:'linear-gradient(105deg,#FFFFFF,#F3F1ED)', borderRadius:'14px 6px 6px 14px',
+      zIndex:0, pointerEvents:'none', opacity:0.7,
+      boxShadow:'0 50px 90px -60px rgba(17,17,17,0.45)',
+      transform: par(-14, -10) + ' rotate(4.5deg) translateY(' + (sy * -0.07).toFixed(1) + 'px)',
+      transition: smooth
+    };
+    const turningPage = {
+      position:'absolute', left:'31%', top:150, width:'23vw', height:600, maxWidth:360,
+      transformOrigin:'left center', zIndex:0, pointerEvents:'none',
+      background:'linear-gradient(100deg,#FFFFFF 0%,#FBFAF8 62%,#EDEBE6 100%)',
+      borderRadius:'4px 18px 18px 4px', overflow:'hidden',
+      boxShadow:'0 70px 110px -60px rgba(17,17,17,0.55), -1px 0 0 rgba(17,17,17,0.06)',
+      transform: 'perspective(1400px) rotateY(' + (-6 - cursorT * 46).toFixed(1) + 'deg) translateY(' + (sy * -0.055).toFixed(1) + 'px)',
+      transition: 'transform .8s cubic-bezier(.16,1,.3,1)'
+    };
+    const turningPageShade = {
+      position:'absolute', inset:0,
+      background:'linear-gradient(100deg, rgba(17,17,17,0.10) 0 3%, transparent 22%, transparent 78%, rgba(17,17,17,' + (0.05 + cursorT * 0.12).toFixed(3) + ') 100%)',
+      transition:'background .8s ease'
+    };
+
+    const decorArcA = {
+      position:'absolute', top:-220, right:-200, width:640, height:640, borderRadius:'50%',
+      border:'64px solid #2FE08A', zIndex:0, pointerEvents:'none',
+      transform: par(-22, -16) + ' rotate(' + (sy * 0.03).toFixed(2) + 'deg)', transition: smooth
+    };
+    const decorArcB = {
+      position:'absolute', bottom:-200, left:-320, width:480, height:480, borderRadius:'50%',
+      border:'52px solid #2FE08A', zIndex:0, pointerEvents:'none',
+      transform: par(18, 14) + ' rotate(' + (sy * -0.025).toFixed(2) + 'deg)', transition: smooth
+    };
+    const decorBlobWrap = {
+      position:'absolute', top:96, right:-80, width:230, height:230, zIndex:0, pointerEvents:'none',
+      animation:'floatB 9s ease-in-out infinite'
+    };
+    const decorBlob = {
+      width:'100%', height:'100%', borderRadius:'50%',
+      background:'linear-gradient(140deg,#FFC61A,#F2295B 55%,#B02BE0)',
+      filter:'saturate(1.05)',
+      boxShadow:'0 40px 90px -30px rgba(242,41,91,0.45)',
+      transform: par(-34, -24) + ' translateY(' + (sy * -0.06).toFixed(1) + 'px)', transition: smooth
+    };
+
+    const HERO_CARDS = [
+      {slotId:'kkg-hero-1', src:'https://picsum.photos/seed/kkg-ground/1200/800', ph:'Wide shot of the festival ground', left:'0%', top:'8%', w:'52%', h:'72%', anim:'floatA 7s', f:9, rot:-1.4},
+      {slotId:'kkg-hero-2', src:'https://picsum.photos/seed/kkg-reading/700/1000', ph:'A reading, close up', left:'49%', top:'0%', w:'25%', h:'54%', anim:'floatB 8.5s', f:16, rot:2.6},
+      {slotId:'kkg-hero-3', src:'https://picsum.photos/seed/kkg-audience/900/700', ph:'The audience', left:'61%', top:'42%', w:'33%', h:'50%', anim:'floatC 9.5s', f:22, rot:-2.2}
+    ];
+    const heroCards = HERO_CARDS.map((c, i) => ({
+      slotId: c.slotId, ph: c.ph, src: c.src,
+      outerStyle: {
+        position:'absolute', left:c.left, top:c.top, width:c.w, height:c.h,
+        animation: c.anim + ' ease-in-out infinite', animationDelay: (i * 0.7) + 's'
+      },
+      innerStyle: {
+        width:'100%', height:'100%', borderRadius:20, overflow:'hidden',
+        transform: par(c.f * -1, c.f * -0.7, ' rotate(' + c.rot + 'deg) translateY(' + (sy * -0.035 * (1 + i * 0.5)).toFixed(1) + 'px)'), transition: smooth,
+        boxShadow:'0 50px 90px -44px rgba(17,17,17,0.5), 0 8px 24px -14px rgba(17,17,17,0.25)'
+      }
+    }));
+    const heroClusterStyle = { position:'relative', zIndex:2, height:'72vh', minHeight:520, marginBottom:20 };
+
+    const hoveredSpeaker = SPEAKERS.find(p => p.id === this.state.hovered);
+    const cursorPreviewStyle = {
+      position:'fixed', left: this.state.cx + 24, top: this.state.cy - 160, width:240, height:320,
+      pointerEvents:'none', zIndex:50, borderRadius:20, overflow:'hidden',
+      backgroundColor:'#E9E7E4',
+      backgroundImage: hoveredSpeaker ? 'url(https://picsum.photos/seed/kkg-face-' + hoveredSpeaker.id + '/700/900)' : 'none',
+      backgroundSize:'cover', backgroundPosition:'center',
+      display: hoveredSpeaker ? 'flex' : 'none', alignItems:'flex-end',
+      boxShadow:'0 40px 70px -34px rgba(17,17,17,0.55)',
+      opacity: hoveredSpeaker ? 1 : 0, transition:'opacity .3s ease'
+    };
+    const cursorPreviewCaptionStyle = {
+      width:'100%', padding:'14px 16px',
+      background:'linear-gradient(to top, rgba(17,17,17,0.72), transparent)',
+      color:'#FFFFFF', fontFamily:"'Archivo',sans-serif", fontWeight:800, fontSize:16
+    };
+
+    const TARGET = new Date('2027-01-15T09:00:00+05:30').getTime();
+    const diff = Math.max(0, TARGET - this.state.now);
+    const units = [
+      { label:'Days', value: Math.floor(diff / 86400000) },
+      { label:'Hours', value: Math.floor(diff / 3600000) % 24 },
+      { label:'Minutes', value: Math.floor(diff / 60000) % 60 },
+      { label:'Seconds', value: Math.floor(diff / 1000) % 60 }
+    ];
+    const SHORT = { Days:'d', Hours:'h', Minutes:'m', Seconds:'s' };
+    const countdown = units.map(u => ({
+      label: u.label,
+      short: SHORT[u.label],
+      value: String(u.value).padStart(2, '0'),
+      stripStyle: {
+        display:'inline-flex', alignItems:'baseline', gap:2,
+        fontFamily:"'IBM Plex Mono',monospace", fontSize:11, letterSpacing:'0.14em',
+        color:'rgba(17,17,17,0.45)'
+      },
+      stripNumStyle: {
+        display:'inline-block', minWidth:'2ch', textAlign:'right',
+        fontFamily:"'Archivo',sans-serif", fontWeight:800, fontSize:15, letterSpacing:'-0.01em',
+        color: u.label === 'Seconds' ? '#EA1F45' : '#111111',
+        transformOrigin:'top center',
+        animation: (u.value % 2 === 0 ? 'flipPageA' : 'flipPageB') + ' .6s cubic-bezier(.16,1,.3,1)'
+      },
+      cardStyle: {
+        position:'relative', minWidth:0, background:'#0E0E0E', color:'#F4F3F1', borderRadius:20,
+        padding:'70px 22px 26px', overflow:'hidden',
+        boxShadow:'0 40px 70px -40px rgba(17,17,17,0.55)'
+      },
+      numberStyle: {
+        fontFamily:"'Archivo',sans-serif", fontWeight:900, fontSize:'clamp(48px,7vw,104px)',
+        lineHeight:1, letterSpacing:'-0.04em', margin:'0 0 14px',
+        transformOrigin:'top center',
+        animation: (u.value % 2 === 0 ? 'flipPageA' : 'flipPageB') + ' .75s cubic-bezier(.16,1,.3,1)'
+      }
+    }));
+
+    const progressStyle = {
+      position:'fixed', top:0, left:0, height:3, zIndex:70,
+      width: (this.state.sp * 100).toFixed(2) + '%',
+      background:'linear-gradient(90deg,#2FE08A,#FFC61A,#EA1F45)'
+    };
+
+    const marqueeStyle = {
+      display:'flex', width:'max-content',
+      transform: 'translateX(' + (-((sy * 0.55) % 2400)).toFixed(1) + 'px)'
+    };
+
+    const heroActive = !(hx === 0 && hy === 0);
+    const letterRow = (word) => word.split('').map((ch, i, arr) => {
+      const t = arr.length > 1 ? i / (arr.length - 1) : 0.5;
+      const prox = heroActive ? Math.max(0, 1 - Math.abs(t - (hx + 1) / 2) * 4.5) : 0;
+      return {
+        ch,
+        style: {
+          display:'inline-block',
+          transform: 'translateY(' + (-prox * 18).toFixed(1) + 'px)',
+          color: prox > 0.7 ? '#EA1F45' : '#111111',
+          transition: 'transform .4s cubic-bezier(.16,1,.3,1), color .35s ease'
+        }
+      };
+    });
+    const heroLettersTop = letterRow('LITERATURE');
+    const heroLettersBottom = letterRow('FESTIVAL');
+
+    const peekSession = [].concat(SESSIONS.d1, SESSIONS.d2, SESSIONS.d3, SESSIONS.d4)
+      .find(s => s.id === this.state.hovered);
+    const featuredPeek = featuredSessions.find(s => s.id === this.state.hovered);
+    const peekOn = !!(peekSession || featuredPeek);
+    const sessionPeekStyle = {
+      position:'fixed', left: this.state.cx + 26, top: this.state.cy - 90, width:250, height:150,
+      zIndex:55, pointerEvents:'none', borderRadius:20, padding:'18px 20px',
+      display: peekOn ? 'flex' : 'none', alignItems:'flex-end',
+      background:'linear-gradient(140deg,#FFC61A,#F2295B 60%,#B02BE0)',
+      color:'#FFFFFF', fontFamily:"'Archivo',sans-serif", fontWeight:800, fontSize:19, lineHeight:1.2,
+      boxShadow:'0 30px 60px -28px rgba(242,41,91,0.55)'
+    };
+    const sessionPeekText = peekSession
+      ? peekSession.stage + ' \u2014 ' + peekSession.time
+      : (featuredPeek ? featuredPeek.meta : '');
+
+    return {
+      countdown, progressStyle, marqueeStyle, heroLettersTop, heroLettersBottom, sessionPeekStyle, sessionPeekText,
+      magnetMove: this.magnetMove, magnetLeave: this.magnetLeave,
+      setRoot: this.setRoot, navItems, setRoute: this.setRoute,
+      goHome: this.goHome, goProgramme: this.goProgramme, goVoices: this.goVoices,
+      goTickets: this.goTickets, goJournal: this.goJournal, goAbout: this.goAbout, noop: this.noop,
+      isHome: r === 'home', isProgramme: r === 'programme', isVoices: r === 'voices',
+      isVenue: r === 'venue', isJournal: r === 'journal', isAbout: r === 'about',
+      revealStyle: { sessions: revealFor('sessions', 0.05), about: revealFor('about', 0.12), voicesHome: revealFor('voicesHome', 0.18) },
+      heroClusterStyle, heroCards, decorArcA, decorArcB, decorBlobWrap, decorBlob,
+      paperSheetA, paperSheetB, turningPage, turningPageShade,
+      heroMove: this.heroMove, heroLeave: this.heroLeave,
+      aboutImageStyle: imgBox(560),
+      venueImageStyle: imgBox('56vh'),
+      marqueeNames: SPEAKERS.map(p => p.name).concat(SPEAKERS.map(p => p.name)),
+      featuredSessions, daySessions,
+      dayTabs: DAY_TABS.map(d => ({
+        ...d,
+        style: {
+          fontFamily:"'IBM Plex Mono',monospace", fontSize:11, letterSpacing:'0.14em', textTransform:'uppercase',
+          padding:'10px 16px', cursor:'pointer',
+          border: this.state.day === d.key ? '1px solid ' + ACCENT : '1px solid rgba(17,17,17,0.18)',
+          color: this.state.day === d.key ? ACCENT : 'rgba(17,17,17,0.6)',
+          background: this.state.day === d.key ? 'rgba(234,31,69,0.07)' : 'transparent',
+          transition:'all .3s ease'
+        }
+      })),
+      speakersRendered, homeSpeakers, journalRendered, passes, editions: EDITIONS,
+      clearHover: this.clearHover, hoverRow: this.hoverRow, setDay: this.setDay,
+      trackCursor: this.trackCursor, cursorPreviewStyle, cursorPreviewCaptionStyle,
+      hoveredName: hoveredSpeaker ? hoveredSpeaker.name : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

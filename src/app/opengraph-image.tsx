@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "KaKhaGa — The Mirror Mind Literature Festival";
+export const alt = "KILF — Kollam International Literature Festival";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -15,17 +15,17 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 80,
-          background: "#F4F3F1",
-          color: "#111111",
+          background: "#F2E8D4",
+          color: "#17110C",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 28, letterSpacing: 4, color: "#EA1F45" }}>
-          THE MIRROR MIND
+        <div style={{ display: "flex", fontSize: 28, letterSpacing: 4, color: "#9C7A4C" }}>
+          KOLLAM INTERNATIONAL LITERATURE FESTIVAL
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 148, fontWeight: 800, lineHeight: 0.95 }}>
-            KaKhaGa
+          <div style={{ display: "flex", fontSize: 148, fontWeight: 800, lineHeight: 0.95, color: "#6F1F2F" }}>
+            KILF
           </div>
           <div style={{ display: "flex", fontSize: 34, fontWeight: 700, marginTop: 20 }}>
             Literature Festival

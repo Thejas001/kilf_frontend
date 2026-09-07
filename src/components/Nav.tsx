@@ -31,11 +31,11 @@ export default function Nav() {
         href="/"
         className="flex shrink-0 items-baseline gap-3 whitespace-nowrap text-ink"
       >
-        <span className="font-malayalam text-[26px] leading-none tracking-[0.04em]">
-          ക ഖ ഗ
+        <span className="font-display text-[26px] leading-none font-black tracking-[0.01em] text-accent">
+          KILF
         </span>
-        <span className="font-mono text-[11px] tracking-[0.18em] text-ink/50 uppercase">
-          KaKhaGa
+        <span className="font-mono text-[11px] tracking-[0.18em] text-gold uppercase">
+          Kerala Int&apos;l Lit Fest
         </span>
       </Link>
 

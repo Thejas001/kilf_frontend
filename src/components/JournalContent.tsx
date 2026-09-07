@@ -4,10 +4,10 @@ import { rowInteractive } from "@/lib/ui";
 export default function JournalContent() {
   return (
     <section className="px-10 pt-37.5 pb-27.5 max-[640px]:px-5">
-      <div className="font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
+      <div className="font-mono text-[11px] tracking-[0.2em] text-gold uppercase">
         /journal
       </div>
-      <h1 className="mt-6 mb-12.5 font-sans text-[clamp(48px,8vw,120px)] leading-[0.95] font-extrabold break-words max-[480px]:text-[clamp(34px,11vw,120px)]">
+      <h1 className="mt-6 mb-12.5 font-sans text-[clamp(48px,8vw,120px)] leading-[0.95] font-extrabold break-words text-accent max-[480px]:text-[clamp(34px,11vw,120px)]">
         Notes between
         <br />
         editions.

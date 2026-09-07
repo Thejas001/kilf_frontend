@@ -4,16 +4,16 @@ import ImageSlot from "@/components/ImageSlot";
 import PassCard from "@/components/PassCard";
 
 export const metadata: Metadata = {
-  title: "Venue & passes — KaKhaGa",
+  title: "Venue & passes — KILF",
 };
 
 export default function VenuePage() {
   return (
     <section className="px-10 pt-37.5 pb-27.5 max-[640px]:px-5">
-      <div className="font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
+      <div className="font-mono text-[11px] tracking-[0.2em] text-gold uppercase">
         /venue &amp; passes
       </div>
-      <h1 className="mt-6 mb-12.5 font-sans text-[clamp(48px,8vw,120px)] leading-[0.95] font-extrabold break-words max-[480px]:text-[clamp(34px,11vw,120px)]">
+      <h1 className="mt-6 mb-12.5 font-sans text-[clamp(48px,8vw,120px)] leading-[0.95] font-extrabold break-words text-accent max-[480px]:text-[clamp(34px,11vw,120px)]">
         Karunagappally.
       </h1>
       <div className="relative z-[2] h-[56vh] w-full overflow-hidden rounded-[20px] shadow-[0_40px_80px_-40px_rgba(17,17,17,0.45),0_2px_0_rgba(255,255,255,0.6)]">
@@ -53,7 +53,7 @@ export default function VenuePage() {
         </div>
       </div>
       <div className="border-t border-ink/12 pt-10">
-        <div className="mb-7.5 font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
+        <div className="mb-7.5 font-mono text-[11px] tracking-[0.2em] text-gold uppercase">
           Passes
         </div>
         <div className="grid grid-cols-3 gap-6 max-[860px]:grid-cols-1">

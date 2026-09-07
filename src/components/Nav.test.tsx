@@ -12,7 +12,7 @@ import { NAV } from "@/data/festival";
 describe("Nav", () => {
   it("renders the wordmark and every nav link", () => {
     render(<Nav />);
-    expect(screen.getByText("KaKhaGa")).toBeInTheDocument();
+    expect(screen.getByText("KILF")).toBeInTheDocument();
     for (const n of NAV) {
       expect(screen.getAllByText(n.label).length).toBeGreaterThan(0);
     }

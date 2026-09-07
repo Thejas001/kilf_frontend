@@ -13,7 +13,7 @@ export default function FeaturedSessions() {
   return (
     <section className="px-10 py-27.5 max-[640px]:px-5">
       <div className="mb-12.5 flex items-baseline justify-between">
-        <h2 className="m-0 font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
+        <h2 className="m-0 font-mono text-[11px] tracking-[0.2em] text-gold uppercase">
           Selected sessions
         </h2>
         <Link
@@ -42,7 +42,7 @@ export default function FeaturedSessions() {
         aria-hidden
         style={{ left: cx + 26, top: cy - 90 }}
         className={clsx(
-          "fixed z-[55] h-37.5 w-62.5 items-end rounded-[20px] bg-[linear-gradient(140deg,var(--color-gold),var(--color-magenta)_60%,var(--color-violet))] p-5 font-sans text-[19px] leading-tight font-extrabold text-white shadow-[0_30px_60px_-28px_rgba(242,41,91,0.55)]",
+          "fixed z-[55] h-37.5 w-62.5 items-end rounded-[20px] bg-[linear-gradient(135deg,var(--color-amber)_0%,var(--color-accent)_48%,#4a1420_100%)] p-5 font-sans text-[19px] leading-tight font-extrabold text-white shadow-[0_30px_60px_-28px_rgba(143,44,52,0.55)]",
           peek ? "flex" : "hidden"
         )}
       >

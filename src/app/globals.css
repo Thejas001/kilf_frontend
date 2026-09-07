@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #f4f3f1;
-  --color-ink: #111111;
-  --color-accent: #ea1f45;
-  --color-emerald: #2fe08a;
-  --color-gold: #ffc61a;
-  --color-magenta: #f2295b;
-  --color-violet: #b02be0;
+  --color-paper: #f2e8d4;
+  --color-ink: #17110c;
+  --color-accent: #6f1f2f;
+  --color-emerald: #e2d1ab;
+  --color-gold: #9c7a4c;
+  --color-amber: #cc9f5c;
+  --color-magenta: #8f2c34;
+  --color-violet: #3f131c;
   --color-charcoal: #0e0e0e;
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
   --font-malayalam: var(--font-noto-malayalam), serif;
+  --font-display: var(--font-playfair), serif;
 
   --animate-marquee: marquee 38s linear infinite;
   --animate-float-a: floatA 7s ease-in-out infinite;

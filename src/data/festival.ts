@@ -1,4 +1,4 @@
-export const ACCENT = "#EA1F45";
+export const ACCENT = "#6F1F2F";
 
 export type NavItem = { route: string; label: string };
 
@@ -13,18 +13,28 @@ export const NAV: NavItem[] = [
 export type Speaker = { id: string; name: string; role: string; lang: string };
 
 export const SPEAKERS: Speaker[] = [
-  { id: "s1", name: "Ammu Sreedharan", role: "Poet", lang: "Malayalam" },
-  { id: "s2", name: "Rehan Qureshi", role: "Novelist", lang: "Urdu / English" },
-  { id: "s3", name: "Leela Thampuran", role: "Translator", lang: "Malayalam / Tamil" },
-  { id: "s4", name: "Joseph Vadakkan", role: "Essayist", lang: "Malayalam" },
-  { id: "s5", name: "Nandita Bose", role: "Publisher", lang: "Bengali" },
-  { id: "s6", name: "Fathima Rasheed", role: "Playwright", lang: "Malayalam / Arabic" },
-  { id: "s7", name: "Kiran Mattancherry", role: "Graphic novelist", lang: "English" },
-  { id: "s8", name: "Devika Iyer", role: "Critic", lang: "Tamil / English" },
-  { id: "s9", name: "Abbas Mehdi", role: "Poet", lang: "Kashmiri" },
-  { id: "s10", name: "Sara Kuriakose", role: "Memoirist", lang: "Malayalam" },
-  { id: "s11", name: "Thomas Ittira", role: "Historian", lang: "English" },
-  { id: "s12", name: "Meenakshi Warrier", role: "Screenwriter", lang: "Malayalam" },
+  { id: "s1", name: "Vijaya Raghavan", role: "Fine artist", lang: "Malayalam" },
+  { id: "s2", name: "Blessy", role: "Director", lang: "Malayalam" },
+  { id: "s3", name: "Deepan Shivaraman", role: "Drama artist", lang: "Malayalam" },
+  { id: "s4", name: "Kalpaka Narayanan", role: "Poet", lang: "Malayalam" },
+  { id: "s5", name: "Sunil P. Ilayidam", role: "Writer", lang: "Malayalam" },
+  { id: "s6", name: "Shibu Chakraborty", role: "Writer", lang: "Malayalam" },
+  { id: "s7", name: "Sakarih", role: "Writer", lang: "Malayalam" },
+  { id: "s8", name: "Jayaraju Varrier", role: "Writer", lang: "Malayalam" },
+  { id: "s9", name: "Madhubal", role: "Writer", lang: "Malayalam" },
+  { id: "s10", name: "G. Venugopal", role: "Writer", lang: "Malayalam" },
+  { id: "s11", name: "Sarah Joseph", role: "Writer", lang: "Malayalam" },
+  { id: "s12", name: "P. K. Gurudasan", role: "Politician", lang: "Malayalam" },
+  { id: "s13", name: "Sarath Chandra Varma", role: "Writer", lang: "Malayalam" },
+  { id: "s14", name: "Hari Narayanan", role: "Music director", lang: "Malayalam" },
+  { id: "s15", name: "V. S. Bindu", role: "Writer", lang: "Malayalam" },
+  { id: "s16", name: "Chandramati", role: "Writer", lang: "Malayalam" },
+  { id: "s17", name: "Roll John", role: "AI specialist", lang: "Malayalam" },
+  { id: "s18", name: "Vijesh Puthiyidam Kabani", role: "Writer", lang: "Malayalam" },
+  { id: "s19", name: "Muragn Kattakada", role: "Writer", lang: "Malayalam" },
+  { id: "s20", name: "P. K. Parakadavu", role: "Writer", lang: "Malayalam" },
+  { id: "s21", name: "K. Jayakumar", role: "IAS officer", lang: "Malayalam" },
+  { id: "s22", name: "Pramod Shivadas", role: "Writer", lang: "Malayalam" },
 ];
 
 export type Session = {

@@ -11,12 +11,11 @@ export default function AboutPreview() {
         />
       </div>
       <div>
-        <div className="mb-7 font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
+        <div className="mb-7 font-mono text-[11px] tracking-[0.2em] text-gold uppercase">
           About
         </div>
         <p className="m-0 mb-7 font-sans text-[32px] leading-[1.3] font-extrabold tracking-[-0.02em]">
-          KaKhaGa takes its name from the first three letters a Malayali
-          child learns to write.
+          KILF stands for the Kollam International Literature Festival.
         </p>
         <p className="m-0 mb-5 text-[15px] leading-loose text-ink/62">
           It began in 2021 as a two-room gathering of translators in

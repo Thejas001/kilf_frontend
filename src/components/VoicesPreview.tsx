@@ -15,14 +15,14 @@ export default function VoicesPreview() {
   return (
     <section className="px-10 pb-27.5 max-[640px]:px-5">
       <div className="mb-10 flex items-baseline justify-between border-t border-ink/12 pt-7.5">
-        <h2 className="m-0 font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
+        <h2 className="m-0 font-mono text-[11px] tracking-[0.2em] text-gold uppercase">
           Voices, 2027
         </h2>
         <Link
           href="/voices"
           className="font-mono text-[11px] tracking-[0.14em] text-accent uppercase"
         >
-          All 42 &rarr;
+          All {SPEAKERS.length} &rarr;
         </Link>
       </div>
       <div className="grid grid-cols-4 gap-6 max-[860px]:grid-cols-2">
@@ -37,10 +37,10 @@ export default function VoicesPreview() {
             >
               <ImageSlot src={`https://picsum.photos/seed/kkg-face-${p.id}/700/900`} alt={p.name} />
             </div>
-            <div className="mt-4 font-sans text-[22px] font-extrabold tracking-[-0.02em] text-ink">
+            <div className="mt-4 font-sans text-[22px] font-extrabold tracking-[-0.02em] text-accent">
               {p.name}
             </div>
-            <div className="mt-1.5 font-mono text-[10px] tracking-[0.14em] text-ink/45 uppercase">
+            <div className="mt-1.5 font-mono text-[10px] tracking-[0.14em] text-gold uppercase">
               {p.role}
             </div>
           </Link>

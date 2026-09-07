@@ -15,10 +15,10 @@ export default function ProgrammeContent() {
 
   return (
     <section className="px-10 pt-37.5 pb-27.5 max-[640px]:px-5">
-      <div className="font-mono text-[11px] tracking-[0.2em] text-ink/50 uppercase">
+      <div className="font-mono text-[11px] tracking-[0.2em] text-gold uppercase">
         /programme
       </div>
-      <h1 className="mt-6 mb-12.5 font-sans text-[clamp(48px,8vw,120px)] leading-[0.95] font-extrabold break-words max-[480px]:text-[clamp(34px,11vw,120px)]">
+      <h1 className="mt-6 mb-12.5 font-sans text-[clamp(48px,8vw,120px)] leading-[0.95] font-extrabold break-words text-accent max-[480px]:text-[clamp(34px,11vw,120px)]">
         Ninety sessions,
         <br />
         four days.
@@ -44,8 +44,8 @@ export default function ProgrammeContent() {
                 "border font-mono text-[11px] tracking-[0.14em] uppercase transition-all duration-300",
                 "px-4 py-2.5",
                 active
-                  ? "border-accent bg-accent/7 text-accent"
-                  : "border-ink/18 bg-transparent text-ink/60"
+                  ? "border-accent bg-accent text-white"
+                  : "border-accent/40 bg-transparent text-accent"
               )}
             >
               {d.label}
@@ -79,7 +79,7 @@ export default function ProgrammeContent() {
         aria-hidden
         style={{ left: cx + 26, top: cy - 90 }}
         className={clsx(
-          "fixed z-[55] h-37.5 w-62.5 items-end rounded-[20px] bg-[linear-gradient(140deg,var(--color-gold),var(--color-magenta)_60%,var(--color-violet))] p-5 font-sans text-[19px] leading-tight font-extrabold text-white shadow-[0_30px_60px_-28px_rgba(242,41,91,0.55)]",
+          "fixed z-[55] h-37.5 w-62.5 items-end rounded-[20px] bg-[linear-gradient(135deg,var(--color-amber)_0%,var(--color-accent)_48%,#4a1420_100%)] p-5 font-sans text-[19px] leading-tight font-extrabold text-white shadow-[0_30px_60px_-28px_rgba(143,44,52,0.55)]",
           peek ? "flex" : "hidden"
         )}
       >

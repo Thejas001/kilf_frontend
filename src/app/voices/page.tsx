@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import VoicesContent from "@/components/VoicesContent";
 
 export const metadata: Metadata = {
-  title: "Voices — KaKhaGa",
+  title: "Voices — KILF",
 };
 
 export default function VoicesPage() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { useScrollProgress } from "@/lib/hooks";
 import Countdown from "@/components/Countdown";
 import ImageSlot from "@/components/ImageSlot";
@@ -13,20 +13,13 @@ const HERO_CARDS = [
 
 const EASE_SMOOTH = "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]";
 
-function letterRow(word: string, hx: number) {
-  const heroActive = hx !== 0;
-  const chars = word.split("");
-  return chars.map((ch, i) => {
-    const t = chars.length > 1 ? i / (chars.length - 1) : 0.5;
-    const prox = heroActive ? Math.max(0, 1 - Math.abs(t - (hx + 1) / 2) * 4.5) : 0;
-    return {
-      ch,
-      style: {
-        transform: `translateY(${(-prox * 18).toFixed(1)}px)`,
-        color: prox > 0.7 ? "var(--color-accent)" : "var(--color-ink)",
-      } as React.CSSProperties,
-    };
-  });
+function HeroWord({ word, split }: { word: string; split: number }) {
+  return (
+    <span className="flex flex-nowrap">
+      <span className="text-accent">{word.slice(0, split)}</span>
+      <span className="text-ink">{word.slice(split)}</span>
+    </span>
+  );
 }
 
 export default function Hero() {
@@ -47,9 +40,6 @@ export default function Hero() {
   const par = (fx: number, fy: number, extra?: string) =>
     `translate3d(${(hx * fx).toFixed(2)}px, ${(hy * fy).toFixed(2)}px, 0)${extra || ""}`;
   const cursorT = (hx + 1) / 2;
-
-  const heroLettersTop = useMemo(() => letterRow("LITERATURE", hx), [hx]);
-  const heroLettersBottom = useMemo(() => letterRow("FESTIVAL", hx), [hx]);
 
   return (
     <section
@@ -97,47 +87,27 @@ export default function Hero() {
         className="animate-float-b pointer-events-none absolute top-24 -right-20 z-0 h-57.5 w-57.5"
       >
         <div
-          className={`h-full w-full rounded-full bg-[linear-gradient(140deg,var(--color-gold),var(--color-magenta)_55%,var(--color-violet))] shadow-[0_40px_90px_-30px_rgba(242,41,91,0.45)] saturate-[1.05] ${EASE_SMOOTH}`}
+          className={`h-full w-full rounded-full bg-[linear-gradient(135deg,var(--color-amber)_0%,var(--color-accent)_48%,#4a1420_100%)] shadow-[0_40px_90px_-30px_rgba(143,44,52,0.45)] saturate-[1.05] ${EASE_SMOOTH}`}
           style={{ transform: `${par(-34, -24)} translateY(${(sy * -0.06).toFixed(1)}px)` }}
         />
       </div>
 
-      <div className="relative z-[2] flex flex-wrap justify-between gap-3 border-b border-ink/12 pb-3.5 font-mono text-[11px] tracking-[0.18em] text-ink/50 uppercase">
+      <div className="relative z-[2] flex flex-wrap justify-between gap-3 border-b border-ink/12 pb-3.5 font-mono text-[11px] tracking-[0.18em] text-gold uppercase">
         <span>Capital Media presents</span>
         <Countdown />
         <span>15&ndash;18 Jan 2027 &middot; Karunagappally</span>
       </div>
 
       <div className="relative z-[2] mt-13">
-        <div className="font-malayalam text-[clamp(64px,11vw,176px)] leading-none tracking-[0.02em] text-ink">
-          ക ഖ ഗ
+        <div className="font-display text-[clamp(64px,11vw,176px)] leading-none font-black tracking-[0.01em] text-accent">
+          KILF
         </div>
-        <div className="mt-5.5 mb-2.5 font-mono text-[13px] tracking-[0.34em] text-accent uppercase">
-          The Mirror Mind
+        <div className="mt-5.5 mb-2.5 font-mono text-[13px] tracking-[0.34em] text-gold uppercase">
+          Kerala International Literature Fest
         </div>
         <h1 className="m-0 font-sans text-[clamp(44px,8.4vw,132px)] leading-[0.94] font-black tracking-[-0.03em] uppercase">
-          <span className="flex flex-nowrap">
-            {heroLettersTop.map((l, i) => (
-              <span
-                key={i}
-                className="inline-block transition-[transform,color] duration-[400ms] ease-out"
-                style={l.style}
-              >
-                {l.ch}
-              </span>
-            ))}
-          </span>
-          <span className="flex flex-nowrap">
-            {heroLettersBottom.map((l, i) => (
-              <span
-                key={i}
-                className="inline-block transition-[transform,color] duration-[400ms] ease-out"
-                style={l.style}
-              >
-                {l.ch}
-              </span>
-            ))}
-          </span>
+          <HeroWord word="LITERATURE" split={2} />
+          <HeroWord word="FESTIVAL" split={2} />
         </h1>
       </div>
 

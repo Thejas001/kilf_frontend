@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono, Noto_Serif_Malayalam } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, Noto_Serif_Malayalam, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -24,7 +24,13 @@ const notoMalayalam = Noto_Serif_Malayalam({
   weight: ["400", "600"],
 });
 
-const title = "KaKhaGa — The Mirror Mind Literature Festival";
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
+});
+
+const title = "KILF — Kollam International Literature Festival";
 const description =
   "Four days for the written word — in Malayalam, and everything it listens to. 15–18 January 2027, Karunagappally.";
 
@@ -36,7 +42,7 @@ export const metadata: Metadata = {
     title,
     description,
     url: SITE_URL,
-    siteName: "KaKhaGa",
+    siteName: "KILF",
     type: "website",
   },
   twitter: {
@@ -54,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${archivo.variable} ${plexMono.variable} ${notoMalayalam.variable} bg-paper-texture relative min-h-screen overflow-x-hidden bg-paper font-sans text-ink`}
+        className={`${archivo.variable} ${plexMono.variable} ${notoMalayalam.variable} ${playfair.variable} bg-paper-texture relative min-h-screen overflow-x-hidden bg-paper font-sans text-ink`}
       >
         <a
           href="#main"
