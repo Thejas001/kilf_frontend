@@ -49,9 +49,7 @@ export default function VoicesContent() {
         style={{
           left: cx + 24,
           top: cy - 160,
-          backgroundImage: hoveredSpeaker
-            ? `url(https://picsum.photos/seed/kkg-face-${hoveredSpeaker.id}/700/900)`
-            : undefined,
+          backgroundImage: hoveredSpeaker ? `url(${hoveredSpeaker.image.src})` : undefined,
         }}
         className={clsx(
           "fixed z-[50] h-80 w-60 items-end overflow-hidden rounded-[20px] bg-[#E9E7E4] bg-cover bg-center shadow-[0_40px_70px_-34px_rgba(17,17,17,0.55)] transition-opacity duration-300",

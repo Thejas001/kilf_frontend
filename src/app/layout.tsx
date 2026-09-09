@@ -1,33 +1,21 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono, Noto_Serif_Malayalam, Playfair_Display } from "next/font/google";
+import { Cutive_Mono, Prata } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import { SITE_URL } from "@/lib/site";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const prata = Prata({
+  variable: "--font-prata",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400"],
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
+const cutiveMono = Cutive_Mono({
+  variable: "--font-cutive-mono",
   subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
-const notoMalayalam = Noto_Serif_Malayalam({
-  variable: "--font-noto-malayalam",
-  subsets: ["malayalam"],
-  weight: ["400", "600"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["700", "800", "900"],
+  weight: ["400"],
 });
 
 const title = "KILF — Kollam International Literature Festival";
@@ -60,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${archivo.variable} ${plexMono.variable} ${notoMalayalam.variable} ${playfair.variable} bg-paper-texture relative min-h-screen overflow-x-hidden bg-paper font-sans text-ink`}
+        className={`${prata.variable} ${cutiveMono.variable} bg-paper-texture relative min-h-screen overflow-x-hidden bg-paper font-sans text-ink`}
       >
         <a
           href="#main"

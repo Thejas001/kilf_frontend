@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import Link from "next/link";
 import { useScrollProgress } from "@/lib/hooks";
 import Countdown from "@/components/Countdown";
 import ImageSlot from "@/components/ImageSlot";
@@ -103,12 +104,21 @@ export default function Hero() {
           KILF
         </div>
         <div className="mt-5.5 mb-2.5 font-mono text-[13px] tracking-[0.34em] text-gold uppercase">
-          Kerala International Literature Fest
+          KERALA INTERNATIONAL LITERATURE FEST
         </div>
         <h1 className="m-0 font-sans text-[clamp(44px,8.4vw,132px)] leading-[0.94] font-black tracking-[-0.03em] uppercase">
           <HeroWord word="LITERATURE" split={2} />
           <HeroWord word="FESTIVAL" split={2} />
         </h1>
+      </div>
+
+      <div className="relative z-[2] mt-8 mb-10 flex justify-center">
+        <Link
+          href="/venue"
+          className="rounded-full bg-accent px-10 py-5 font-mono text-[12px] tracking-[0.22em] text-white uppercase shadow-[0_24px_50px_-22px_rgba(111,31,47,0.9)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_30px_60px_-24px_rgba(111,31,47,1)]"
+        >
+          Book Pass
+        </Link>
       </div>
 
       <div className="relative z-[2] mt-13 grid grid-cols-[1.4fr_1fr] items-end gap-15 pb-15 max-[860px]:grid-cols-1">

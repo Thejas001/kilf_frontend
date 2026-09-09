@@ -46,6 +46,14 @@ describe("festival data", () => {
     expect(PASSES.filter((p) => p.feature)).toHaveLength(1);
   });
 
+  it("uses the corrected guest roster and removes the retired speaker", () => {
+    expect(SPEAKERS.some((p) => p.name === "Paul Zacharia")).toBe(true);
+    expect(SPEAKERS.some((p) => p.name === "Raul John Aju")).toBe(true);
+    expect(SPEAKERS.some((p) => p.name === "Pramod Shivadas")).toBe(false);
+    expect(SPEAKERS.some((p) => p.name === "Sakarih")).toBe(false);
+    expect(SPEAKERS.some((p) => p.name === "Roll John")).toBe(false);
+  });
+
   it("every nav route is an absolute path", () => {
     for (const n of NAV) {
       expect(n.route.startsWith("/")).toBe(true);

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  --font-stack-sans-notch: "Stack Sans Notch", "Avenir Next", "Segoe UI", sans-serif;
+}
+
 @theme {
   --color-paper: #f2e8d4;
   --color-ink: #17110c;
@@ -11,10 +15,9 @@
   --color-violet: #3f131c;
   --color-charcoal: #0e0e0e;
 
-  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
-  --font-malayalam: var(--font-noto-malayalam), serif;
-  --font-display: var(--font-playfair), serif;
+  --font-sans: var(--font-stack-sans-notch);
+  --font-mono: var(--font-cutive-mono), "SFMono-Regular", monospace;
+  --font-display: var(--font-prata), serif;
 
   --animate-marquee: marquee 38s linear infinite;
   --animate-float-a: floatA 7s ease-in-out infinite;
@@ -25,11 +28,25 @@
 }
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   html,
   body {
     margin: 0;
     padding: 0;
     background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-stack-sans-notch);
+  }
+
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
@@ -37,15 +54,27 @@
     color: white;
   }
 
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    border-radius: 999px;
+  }
+
   a {
     color: var(--color-ink);
+    text-decoration: none;
   }
 
   a:focus-visible,
-  button:focus-visible {
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
-    border-radius: 1px;
+    border-radius: 20px;
   }
 
   input::placeholder {

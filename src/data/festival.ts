@@ -1,3 +1,26 @@
+import type { StaticImageData } from "next/image";
+import vijayaImage from "@/guest/Vijayaraghavan.webp";
+import blessyImage from "@/guest/Blessy director.webp";
+import deepanImage from "@/guest/deepan sivaraman.webp";
+import sunilImage from "@/guest/Dr._Sunil_P_Ilayidam.webp";
+import hariImage from "@/guest/Hari Narayanan.webp";
+import jayarajImage from "@/guest/jayaraj warrier.webp";
+import jayakumarImage from "@/guest/K Jayakumar IAS.webp";
+import kalpakaImage from "@/guest/kalpetta-narayanan-02.webp";
+import madupalImage from "@/guest/madupal actor.webp";
+import muragnImage from "@/guest/Muragn kattakada.webp";
+import paulImage from "@/guest/paul-zacharia-profile-photo.webp";
+import gurudasanImage from "@/guest/Pk gurudasan.webp";
+import parakadavuImage from "@/guest/Pk parakadavu.webp";
+import raulImage from "@/guest/Raul.webp";
+import sarahImage from "@/guest/sarah.webp";
+import sarathImage from "@/guest/Sarath chadra varma.webp";
+import shibuImage from "@/guest/shibu-chakravarthy.webp";
+import venugopalImage from "@/guest/venugopal.webp";
+import chandramathiImage from "@/guest/CHANDRAMATHI.webp";
+import vijeshImage from "@/guest/vijesh_20kv.webp";
+import binduImage from "@/guest/Vs bindu.webp";
+
 export const ACCENT = "#6F1F2F";
 
 export type NavItem = { route: string; label: string };
@@ -10,31 +33,53 @@ export const NAV: NavItem[] = [
   { route: "/about", label: "/about" },
 ];
 
-export type Speaker = { id: string; name: string; role: string; lang: string };
+export type Speaker = {
+  id: string;
+  name: string;
+  role: string;
+  lang: string;
+  image: StaticImageData;
+};
 
 export const SPEAKERS: Speaker[] = [
-  { id: "s1", name: "Vijaya Raghavan", role: "Fine artist", lang: "Malayalam" },
-  { id: "s2", name: "Blessy", role: "Director", lang: "Malayalam" },
-  { id: "s3", name: "Deepan Shivaraman", role: "Drama artist", lang: "Malayalam" },
-  { id: "s4", name: "Kalpaka Narayanan", role: "Poet", lang: "Malayalam" },
-  { id: "s5", name: "Sunil P. Ilayidam", role: "Writer", lang: "Malayalam" },
-  { id: "s6", name: "Shibu Chakraborty", role: "Writer", lang: "Malayalam" },
-  { id: "s7", name: "Sakarih", role: "Writer", lang: "Malayalam" },
-  { id: "s8", name: "Jayaraju Varrier", role: "Writer", lang: "Malayalam" },
-  { id: "s9", name: "Madhubal", role: "Writer", lang: "Malayalam" },
-  { id: "s10", name: "G. Venugopal", role: "Writer", lang: "Malayalam" },
-  { id: "s11", name: "Sarah Joseph", role: "Writer", lang: "Malayalam" },
-  { id: "s12", name: "P. K. Gurudasan", role: "Politician", lang: "Malayalam" },
-  { id: "s13", name: "Sarath Chandra Varma", role: "Writer", lang: "Malayalam" },
-  { id: "s14", name: "Hari Narayanan", role: "Music director", lang: "Malayalam" },
-  { id: "s15", name: "V. S. Bindu", role: "Writer", lang: "Malayalam" },
-  { id: "s16", name: "Chandramati", role: "Writer", lang: "Malayalam" },
-  { id: "s17", name: "Roll John", role: "AI specialist", lang: "Malayalam" },
-  { id: "s18", name: "Vijesh Puthiyidam Kabani", role: "Writer", lang: "Malayalam" },
-  { id: "s19", name: "Muragn Kattakada", role: "Writer", lang: "Malayalam" },
-  { id: "s20", name: "P. K. Parakadavu", role: "Writer", lang: "Malayalam" },
-  { id: "s21", name: "K. Jayakumar", role: "IAS officer", lang: "Malayalam" },
-  { id: "s22", name: "Pramod Shivadas", role: "Writer", lang: "Malayalam" },
+  { id: "s1", name: "Vijaya Raghavan", role: "Fine artist", lang: "Malayalam", image: vijayaImage },
+  { id: "s2", name: "Blessy", role: "Director", lang: "Malayalam", image: blessyImage },
+  { id: "s3", name: "Deepan Shivaraman", role: "Drama artist", lang: "Malayalam", image: deepanImage },
+  { id: "s4", name: "Kalpaka Narayanan", role: "Poet", lang: "Malayalam", image: kalpakaImage },
+  { id: "s5", name: "Sunil P. Ilayidam", role: "Writer", lang: "Malayalam", image: sunilImage },
+  { id: "s6", name: "Shibu Chakraborty", role: "Writer", lang: "Malayalam", image: shibuImage },
+  { id: "s7", name: "Paul Zacharia", role: "Writer", lang: "Malayalam", image: paulImage },
+  { id: "s8", name: "Jayaraju Varrier", role: "Writer", lang: "Malayalam", image: jayarajImage },
+  { id: "s9", name: "Madhubal", role: "Writer", lang: "Malayalam", image: madupalImage },
+  { id: "s10", name: "G. Venugopal", role: "Writer", lang: "Malayalam", image: venugopalImage },
+  { id: "s11", name: "Sarah Joseph", role: "Writer", lang: "Malayalam", image: sarahImage },
+  { id: "s12", name: "P. K. Gurudasan", role: "Politician", lang: "Malayalam", image: gurudasanImage },
+  { id: "s13", name: "Sarath Chandra Varma", role: "Writer", lang: "Malayalam", image: sarathImage },
+  { id: "s14", name: "Hari Narayanan", role: "Music director", lang: "Malayalam", image: hariImage },
+  { id: "s15", name: "V. S. Bindu", role: "Writer", lang: "Malayalam", image: binduImage },
+  { id: "s16", name: "Chandramati", role: "Writer", lang: "Malayalam", image: chandramathiImage },
+  { id: "s17", name: "Raul John Aju", role: "AI specialist", lang: "Malayalam", image: raulImage },
+  { id: "s18", name: "Vijesh Puthiyidam Kabani", role: "Writer", lang: "Malayalam", image: vijeshImage },
+  { id: "s19", name: "Muragn Kattakada", role: "Writer", lang: "Malayalam", image: muragnImage },
+  { id: "s20", name: "P. K. Parakadavu", role: "Writer", lang: "Malayalam", image: parakadavuImage },
+  { id: "s21", name: "K. Jayakumar", role: "IAS officer", lang: "Malayalam", image: jayakumarImage },
+];
+
+export type VolunteerRole = { id: string; label: string };
+
+export const VOLUNTEER_ROLES: VolunteerRole[] = [
+  { id: "publicity", label: "Publicity" },
+  { id: "social-media", label: "Social Media" },
+  { id: "programme-coordination", label: "Programme Coordination" },
+  { id: "book-fair", label: "Book Fair" },
+  { id: "media-video", label: "Media & Video" },
+  { id: "sponsorship", label: "Sponsorship Support" },
+  { id: "campus-outreach", label: "Campus Outreach" },
+  { id: "hospitality", label: "Hospitality" },
+  { id: "registration", label: "Registration" },
+  { id: "technical", label: "Technical" },
+  { id: "childrens-programme", label: "Children’s Programme" },
+  { id: "others", label: "Others" },
 ];
 
 export type Session = {

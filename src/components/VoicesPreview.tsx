@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SPEAKERS } from "@/data/festival";
-import ImageSlot from "@/components/ImageSlot";
+import Image from "next/image";
 
 const CARD_ANIM = [
   "[animation:floatA_7.5s_ease-in-out_0s_infinite]",
@@ -33,9 +33,15 @@ export default function VoicesPreview() {
             className="group block min-w-0 transition-transform duration-500 ease-out hover:-translate-y-2.5"
           >
             <div
-              className={`h-75 w-full overflow-hidden rounded-[20px] shadow-[0_34px_60px_-34px_rgba(17,17,17,0.42)] ${CARD_ANIM[i]}`}
+              className={`relative h-75 w-full overflow-hidden rounded-[20px] shadow-[0_34px_60px_-34px_rgba(17,17,17,0.42)] ${CARD_ANIM[i]}`}
             >
-              <ImageSlot src={`https://picsum.photos/seed/kkg-face-${p.id}/700/900`} alt={p.name} />
+              <Image
+                src={p.image}
+                alt={p.name}
+                fill
+                sizes="(max-width: 860px) 50vw, 25vw"
+                className="object-cover"
+              />
             </div>
             <div className="mt-4 font-sans text-[22px] font-extrabold tracking-[-0.02em] text-accent">
               {p.name}

@@ -17,9 +17,19 @@ export default function Footer() {
         background:
           "radial-gradient(130% 200% at 12% -30%, rgba(255,255,255,0.16), transparent 42%)," +
           "radial-gradient(90% 140% at 88% 130%, rgba(255,255,255,0.07), transparent 48%)," +
-          "linear-gradient(155deg, #202020 0%, #0c0c0c 42%, #000000 72%, #161616 100%)",
+          "linear-gradient(155deg, #6b6b6b 0%, #3b3b3b 20%, #1b1b1b 55%, #090909 100%)",
       }}
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-20"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage: "radial-gradient(circle at center, black 20%, transparent 100%)",
+        }}
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)]"
@@ -61,9 +71,9 @@ export default function Footer() {
             <Link className="text-paper/82 hover:text-emerald" href="/about">
               About
             </Link>
-            <a className="text-paper/82 hover:text-emerald" href="#">
+            <Link className="text-paper/82 hover:text-emerald" href="/volunteer">
               Volunteer
-            </a>
+            </Link>
           </div>
         </nav>
         <div>
