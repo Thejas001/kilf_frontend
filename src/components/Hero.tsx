@@ -94,9 +94,9 @@ export default function Hero() {
       </div>
 
       <div className="relative z-[2] flex flex-wrap justify-between gap-3 border-b border-ink/12 pb-3.5 font-mono text-[11px] tracking-[0.18em] text-gold uppercase">
-        <span>Capital Media presents</span>
+        <span>Organised by Capital Media</span>
         <Countdown />
-        <span>15&ndash;18 Jan 2027 &middot; Karunagappally</span>
+        <span>15&ndash;17 Jan 2027 &middot; Kollam, Kerala</span>
       </div>
 
       <div className="relative z-[2] mt-13">
@@ -104,32 +104,41 @@ export default function Hero() {
           KILF
         </div>
         <div className="mt-5.5 mb-2.5 font-mono text-[13px] tracking-[0.34em] text-gold uppercase">
-          KERALA INTERNATIONAL LITERATURE FEST
+          KOLLAM INTERNATIONAL LITERATURE FESTIVAL
         </div>
         <h1 className="m-0 font-sans text-[clamp(44px,8.4vw,132px)] leading-[0.94] font-black tracking-[-0.03em] uppercase">
           <HeroWord word="LITERATURE" split={2} />
           <HeroWord word="FESTIVAL" split={2} />
         </h1>
+        <p className="mt-4 font-mono text-[13px] tracking-[0.2em] text-ink/75 uppercase">
+          Where Literature Meets the World &bull; A Global Celebration of Literature, Arts, Culture &amp; Ideas
+        </p>
       </div>
 
-      <div className="relative z-[2] mt-8 mb-10 flex justify-center">
+      <div className="relative z-[2] mt-8 mb-10 flex flex-wrap items-center justify-center gap-4">
         <Link
           href="/venue"
           className="rounded-full bg-accent px-10 py-5 font-mono text-[12px] tracking-[0.22em] text-white uppercase shadow-[0_24px_50px_-22px_rgba(111,31,47,0.9)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_30px_60px_-24px_rgba(111,31,47,1)]"
         >
-          Book Pass
+          Book Passes
+        </Link>
+        <Link
+          href="/programme"
+          className="rounded-full border border-accent/40 bg-white/70 px-8 py-5 font-mono text-[12px] tracking-[0.22em] text-accent uppercase backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-white hover:text-accent"
+        >
+          Explore Programme
         </Link>
       </div>
 
       <div className="relative z-[2] mt-13 grid grid-cols-[1.4fr_1fr] items-end gap-15 pb-15 max-[860px]:grid-cols-1">
         <div className="max-w-190 font-sans text-[clamp(24px,3vw,40px)] leading-[1.25] font-extrabold tracking-[-0.02em] text-ink/90">
-          Four days for the written word &mdash; in Malayalam, and everything
+          Three Days of Literature Without Borders &mdash; in Malayalam, and everything
           it listens to.
         </div>
-        <div className="text-[15px] leading-relaxed text-ink/60">
-          A festival of readings, arguments, translation and late-night
-          poetry in Karunagappally. Ninety sessions. Six stages. One shared
-          language of attention.
+        <div className="text-[15px] leading-relaxed text-ink/70">
+          100+ International &amp; Indian Authors. 50+ Panel Discussions &amp; Conversations.
+          International Book Fair, Children&apos;s Village, Poetry Stage, and Film &amp; Literature Sessions
+          along the historic coastline of Kollam.
         </div>
       </div>
 

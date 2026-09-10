@@ -18,9 +18,9 @@ const cutiveMono = Cutive_Mono({
   weight: ["400"],
 });
 
-const title = "KILF — Kollam International Literature Festival";
+const title = "KILF 2027 — Kollam International Literature Festival";
 const description =
-  "Four days for the written word — in Malayalam, and everything it listens to. 15–18 January 2027, Karunagappally.";
+  "Where Literature Meets the World. Three Days of Literature Without Borders. 15–17 January 2027, Kollam, Kerala, India. Organised by Capital Media.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

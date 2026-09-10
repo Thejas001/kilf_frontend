@@ -35,7 +35,7 @@ export default function Nav() {
           KILF
         </span>
         <span className="font-mono text-[9px] tracking-[0.24em] text-gold uppercase max-[560px]:tracking-[0.12em]">
-          KERALA INTERNATIONAL LITERATURE FEST
+          KOLLAM INTERNATIONAL LITERATURE FESTIVAL
         </span>
       </Link>
 

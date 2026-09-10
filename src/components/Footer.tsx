@@ -37,11 +37,11 @@ export default function Footer() {
       <div className="grid grid-cols-[1.6fr_1fr_1fr_1.4fr] gap-12.5 max-[860px]:grid-cols-2 max-[860px]:gap-y-10 max-[560px]:grid-cols-1">
         <div>
           <div className="mb-5 font-display text-4xl leading-none font-black tracking-[0.01em] text-paper">
-            KILF
+            KILF 2027
           </div>
-          <p className="max-w-70 text-sm leading-relaxed text-paper/55">
-            The Mirror Mind Literature Festival. Fourth edition, 15&ndash;18
-            January 2027, Karunagappally.
+          <p className="max-w-70 text-sm leading-relaxed text-paper/65">
+            Kollam International Literature Festival. Organised by Capital Media.
+            15&ndash;17 January 2027, Kollam, Kerala, India.
           </p>
         </div>
         <nav aria-label="Festival">
@@ -57,6 +57,9 @@ export default function Footer() {
             </Link>
             <Link className="text-paper/82 hover:text-emerald" href="/venue">
               Venue &amp; passes
+            </Link>
+            <Link className="text-paper/82 hover:text-emerald" href="/gallery">
+              Gallery &amp; PDF Schedule
             </Link>
           </div>
         </nav>
@@ -107,8 +110,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="mt-15 flex justify-between border-t border-paper/14 pt-5.5 font-mono text-[10px] tracking-[0.14em] text-paper/40 uppercase max-[860px]:flex-col max-[860px]:gap-2">
-        <span>&copy; 2027 KILF</span>
-        <span>Karunagappally &mdash; 9.0544&deg; N, 76.5352&deg; E</span>
+        <span>&copy; 2027 KILF &bull; Organised by Capital Media</span>
+        <span>Kollam &bull; Kerala &bull; India &mdash; 8.8932&deg; N, 76.6141&deg; E</span>
       </div>
     </footer>
   );
